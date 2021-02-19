@@ -10,7 +10,7 @@ Welcome to HiC1Dmetrics's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   Installation
+   h1d_document
 
 
 Indices and tables
