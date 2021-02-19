@@ -10,8 +10,9 @@ Welcome to HiC1Dmetrics's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   h1d_document
-
+   overview
+   onesample
+   twosample
 
 Indices and tables
 ==================

@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>2. Calculate 1D metrics for one sample &mdash; HiC1Dmetrics 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Calculate 1D metrics for comparison of two samples" href="twosample.html" />
+    <link rel="prev" title="1. Overview and Installation" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> HiC1Dmetrics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview and Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Calculate 1D metrics for one sample</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">2.1 Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">2.2 Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics">2.3 Calculate 1D metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visulize-1d-metrics">2.4 Visulize 1D metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HiC1Dmetrics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>2. Calculate 1D metrics for one sample</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/onesample.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="calculate-1d-metrics-for-one-sample">
+<h1>2. Calculate 1D metrics for one sample<a class="headerlink" href="#calculate-1d-metrics-for-one-sample" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quick-start">
+<h2>2.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test_data/Control_1/observed.KR.chr21.matrix.gz <span class="se">\</span>
+		<span class="m">50000</span> chr21 -o Control_IS_chr21
+</pre></div>
+</div>
+<p>This command would generate a bedGraph file (<code class="docutils literal notranslate"><span class="pre">Control_IS_chr21.bedGraph</span></code>) for Insulation Score:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>...</th>
+<th>...</th>
+<th>...</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr21</td>
+<td>24300000</td>
+<td>24350000</td>
+<td>0.59419</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>24350000</td>
+<td>24400000</td>
+<td>0.604341</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="usage">
+<h2>2.2 Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The analysis of one-sample metrics cound be run by <code class="docutils literal notranslate"><span class="pre">h1d</span> <span class="pre">one</span></code> sub-command :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h1d one -h # type -h for help
+usage: __main__.py one [-h] [-p PARAMETER] [-o OUTNAME] [-d] [--start START]
+                       [--end END] [--datatype DATATYPE] [--gt GT] [--allchr]
+                       type matrix resolution chromosome
+
+1D metrics designed for one Hi-C sample.
+
+positional arguments:
+  type                  Type of 1D metrics,,should be one of
+                        {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}.
+  matrix                Path of matrix or rawhic file.
+  resolution            Resolution of input matrix.
+  chromosome            Chromosome number.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PARAMETER, --parameter PARAMETER
+                        Parameter for indicated metrics.
+  -o OUTNAME, --outname OUTNAME
+                        output name (default: &#39;metrics&#39;).
+  -d, --draw            Plot figure for candidate region.
+  --start START         Start sites for plotting.
+  --end END             End sites for plotting.
+  --datatype DATATYPE   Type of input data: matrix(default) or rawhic.
+  --gt GT               genome_table file.
+  --allchr              Calculate metrics for multiple chromosomes.
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> : type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}:</p>
+<ul class="simple">
+<li><p>Directional Index (<strong>DI</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/22495300/">PMID: 22495300</a>)</p></li>
+<li><p>Insulation Score (<strong>IS</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26030525/">PMID: 26030525</a>)</p></li>
+<li><p>Contrast Index (<strong>CI</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/24981874/">PMID: 24981874</a>)</p></li>
+<li><p>TAD separation score (<strong>SS</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29335486/">PMID: 26431028</a>)</p></li>
+<li><p>Distal-to-Local Ratio (<strong>DLR</strong>)  (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30146161/">PMID: 30146161</a>)</p></li>
+<li><p>Compartment PC1 (<strong>PC1</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/19815776/">PMID: 19815776</a>)</p></li>
+<li><p>IntraTADscore (<strong>IAS</strong>) (Original metric)</p></li>
+<li><p>InterTADscore (<strong>IES</strong>) (Original metric)</p></li>
+<li><p>Interaction Frequency (<strong>IF</strong>)(Original metric)</p></li>
+</ul>
+<p>Details is shown in our paper:  <em>link in the future</em></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p,</span> <span class="pre">--parameter</span></code> for each 1D metric is :</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DI</td>
+<td>length of</td>
+<td>1000000</td>
+</tr>
+<tr>
+<td>IS</td>
+<td>square size</td>
+<td>300000</td>
+</tr>
+<tr>
+<td>CI</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DLR</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IAS</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IES</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>IF</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="calculate-1d-metrics">
+<h2>2.3 Calculate 1D metrics<a class="headerlink" href="#calculate-1d-metrics" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Use contact matrix:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -p <span class="m">300000</span> -o control_IS_chr21 --datatype matrix
+</pre></div>
+</div>
+</li>
+<li><p>Use raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test_data/Control/inter_30.hic <span class="se">\</span>
+	<span class="m">50000</span> chr21  -p <span class="m">300000</span> -o control_IS_chr21 --datatype rawhic <span class="se">\</span>
+	--gt h1d/gd/hg19/genome_table
+</pre></div>
+</div>
+</li>
+</ul>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;">
+Calculation of IF only support rawhic datatype
+</div></div>
+<div class="section" id="visulize-1d-metrics">
+<h2>2.4 Visulize 1D metrics<a class="headerlink" href="#visulize-1d-metrics" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="twosample.html" class="btn btn-neutral float-right" title="3. Calculate 1D metrics for comparison of two samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="1. Overview and Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Jiankang Wang.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
