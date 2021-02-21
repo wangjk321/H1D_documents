@@ -13,6 +13,10 @@ Welcome to HiC1Dmetrics's documentation!
    overview
    onesample
    twosample
+   multitype
+   multisample
+   call
+   basic
 
 Indices and tables
 ==================

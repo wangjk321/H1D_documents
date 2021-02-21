@@ -90,11 +90,15 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Calculate 1D metrics for one sample</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">2.1 Quick start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">2.2 Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics">2.3 Calculate 1D metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#visulize-1d-metrics">2.4 Visulize 1D metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics-one-sample">2.3 Calculate 1D metrics (one-sample)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visulize-1d-metrics-one-sample">2.4 Visulize 1D metrics (one-sample)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
             
@@ -166,7 +170,7 @@
 <h1>2. Calculate 1D metrics for one sample<a class="headerlink" href="#calculate-1d-metrics-for-one-sample" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="quick-start">
 <h2>2.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test_data/Control_1/observed.KR.chr21.matrix.gz <span class="se">\</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
 		<span class="m">50000</span> chr21 -o Control_IS_chr21
 </pre></div>
 </div>
@@ -305,28 +309,47 @@ optional arguments:
 </tr>
 </tbody>
 </table></div>
-<div class="section" id="calculate-1d-metrics">
-<h2>2.3 Calculate 1D metrics<a class="headerlink" href="#calculate-1d-metrics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="calculate-1d-metrics-one-sample">
+<h2>2.3 Calculate 1D metrics (one-sample)<a class="headerlink" href="#calculate-1d-metrics-one-sample" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p>Use contact matrix:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
-	<span class="m">50000</span> chr21 -p <span class="m">300000</span> -o control_IS_chr21 --datatype matrix
+	<span class="m">50000</span> chr21 -p <span class="m">300000</span> -o control_CI_chr21 --datatype matrix
 </pre></div>
 </div>
 </li>
 <li><p>Use raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test_data/Control/inter_30.hic <span class="se">\</span>
-	<span class="m">50000</span> chr21  -p <span class="m">300000</span> -o control_IS_chr21 --datatype rawhic <span class="se">\</span>
-	--gt h1d/gd/hg19/genome_table
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one CI ./test_data/Control/inter_30.hic <span class="se">\</span>
+	<span class="m">50000</span> chr21  -p <span class="m">300000</span> -o control_CI_chr21 --datatype rawhic <span class="se">\</span>
+	--gt ./reference/genome_table
 </pre></div>
 </div>
 </li>
 </ul>
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;">
 Calculation of IF only support rawhic datatype
-</div></div>
-<div class="section" id="visulize-1d-metrics">
-<h2>2.4 Visulize 1D metrics<a class="headerlink" href="#visulize-1d-metrics" title="Permalink to this headline">¶</a></h2>
+</div><p>Output will be <code class="docutils literal notranslate"><span class="pre">control_CI_chr21.bedGraph</span></code> as described before.</p>
+</div>
+<div class="section" id="visulize-1d-metrics-one-sample">
+<h2>2.4 Visulize 1D metrics (one-sample)<a class="headerlink" href="#visulize-1d-metrics-one-sample" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Use contact matrix:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -p <span class="m">300000</span> -o Control_CI_chr21 --datatype matrix <span class="se">\</span>
+  --draw -s <span class="m">26000000</span> -e <span class="m">33000000</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use raw matrix:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one CI ./test_data/Control/inter_30.hic <span class="se">\</span>
+	<span class="m">50000</span> chr21 -p <span class="m">300000</span> -o Control_CI_chr21 --datatype rawhic <span class="se">\</span>
+	--gt ./reference/genome_table --draw -s <span class="m">26000000</span> -e <span class="m">33000000</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The output will be <code class="docutils literal notranslate"><span class="pre">control_CI_chr21.bedGraph</span></code> and <code class="docutils literal notranslate"><span class="pre">control_CI_chr21.pdf</span></code>:</p>
+<p>​	<img src="_static/2-4.pdf" alt="RTDimport" style="zoom:60%;" /></p>
 </div>
 </div>
 

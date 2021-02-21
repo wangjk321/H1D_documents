@@ -73,5 +73,5 @@ positional arguments:
                         stripeTAD, et.al)
 ```
 
-In the next section, we use a high-resolution Hi-C data by Rao et,al. ([GSE104334](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104334)) to make this tutorial
+In the next section, we mainly use a high-resolution Hi-C data by Rao et,al. ([GSE104334](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104334)) to make this tutorial
 

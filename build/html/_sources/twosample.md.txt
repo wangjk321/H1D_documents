@@ -2,3 +2,69 @@
 
 ## 3.1 Quick start
 
+``` shell
+h1d two ISC ./test_data/Treat/observed.KR.chr21.matrix.gz \
+	./test_data/Control/observed.KR.chr21.matrix.gz \
+	50000 chr21 -o treat_vs_control_ISC
+```
+
+This command would generate a bedGraph file (`treat_vs_control_ISC.bedGraph`) for ISC:
+
+## 3.2 Usage
+
+The analysis of two-sample metrics cound be run by `h1d two` sub-command :
+
+``` s
+$ h1d two -h # type -h for help
+usage: __main__.py two [-h] [-p PARAMETER] [-o OUTNAME] [-d] [-s START]
+                       [-e END] [--datatype DATATYPE] [--gt GT]
+                       type matrix controlmatrix resolution chromosome
+
+1D metrics designed for comparison of two Hi-C samples
+
+positional arguments:
+  type                  Type of 1D metrics for two-sample comparison,should be
+                        one of {ISC,CIC,SSC,deltaDLR,CD,IESC,IASC,IFC,DRF}
+  matrix                Path of treated file (matrix or rawhic).
+  controlmatrix         Path of control file (matrix or rawhic).
+  resolution            Resolution of input matrix
+  chromosome            Chromosome number ('chr21',i.e).
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PARAMETER, --parameter PARAMETER
+                        Parameter for indicated metrics
+  -o OUTNAME, --outname OUTNAME
+                        output name (default: metricsChange)
+  -d, --draw            Plot figure for candidate region
+  -s START, --start START
+                        Start sites for plotting
+  -e END, --end END     End sites for plotting
+  --datatype DATATYPE   matrix or rawhic
+  --gt GT               genome table file
+```
+
+- `type` : type of 1D metrics could be one of {ISC,CIC,SSC,deltaDLR,CD,IESC,IASC,IFC,DRF}:
+
+  - Insulation Score Change (**ISC**) ([PMID: 22495300](https://pubmed.ncbi.nlm.nih.gov/22495300/))
+  - Insulation Score (**IS**) ([PMID: 26030525](https://pubmed.ncbi.nlm.nih.gov/26030525/))
+  - Contrast Index (**CI**) ([PMID: 24981874](https://pubmed.ncbi.nlm.nih.gov/24981874/))
+  - TAD separation score (**SS**) ([PMID: 26431028](https://pubmed.ncbi.nlm.nih.gov/29335486/))
+  - Distal-to-Local Ratio (**DLR**)  ([PMID: 30146161](https://pubmed.ncbi.nlm.nih.gov/30146161/))
+  - Compartment PC1 (**PC1**) ([PMID: 19815776](https://pubmed.ncbi.nlm.nih.gov/19815776/))
+  - IntraTADscore (**IAS**) (Original metric)
+  - InterTADscore (**IES**) (Original metric)
+  - Interaction Frequency (**IF**)(Original metric)
+
+  Details is shown in our paper:  *link in the future*
+
+
+
+
+
+## 3.3 Calculate 1D metrics (two-sample)
+
+## 3.4 Visualize 1D metrics (two-sample)
+
+
+

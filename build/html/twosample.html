@@ -38,6 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Obtain various types of 1D metrics for the same sample" href="multitype.html" />
     <link rel="prev" title="2. Calculate 1D metrics for one sample" href="onesample.html" /> 
 </head>
 
@@ -89,8 +90,15 @@
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Calculate 1D metrics for comparison of two samples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">3.1 Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">3.2 Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics-two-sample">3.3 Calculate 1D metrics (two-sample)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualize-1d-metrics-two-sample">3.4 Visualize 1D metrics (two-sample)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
             
@@ -162,6 +170,67 @@
 <h1>3. Calculate 1D metrics for comparison of two samples<a class="headerlink" href="#calculate-1d-metrics-for-comparison-of-two-samples" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="quick-start">
 <h2>3.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d two ISC ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -o treat_vs_control_ISC
+</pre></div>
+</div>
+<p>This command would generate a bedGraph file (<code class="docutils literal notranslate"><span class="pre">treat_vs_control_ISC.bedGraph</span></code>) for ISC:</p>
+</div>
+<div class="section" id="usage">
+<h2>3.2 Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The analysis of two-sample metrics cound be run by <code class="docutils literal notranslate"><span class="pre">h1d</span> <span class="pre">two</span></code> sub-command :</p>
+<div class="highlight-s notranslate"><div class="highlight"><pre><span></span><span class="o">$</span> <span class="n">h1d</span> <span class="n">two</span> <span class="o">-</span><span class="n">h</span> <span class="c1"># type -h for help</span>
+<span class="n">usage</span><span class="o">:</span> __<span class="n">main__.py</span> <span class="n">two</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PARAMETER</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTNAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">d</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">START</span><span class="p">]</span>
+                       <span class="p">[</span><span class="o">-</span><span class="n">e</span> <span class="n">END</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">datatype</span> <span class="n">DATATYPE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">gt</span> <span class="n">GT</span><span class="p">]</span>
+                       <span class="n">type</span> <span class="n">matrix</span> <span class="n">controlmatrix</span> <span class="n">resolution</span> <span class="n">chromosome</span>
+
+<span class="m">1</span><span class="n">D</span> <span class="n">metrics</span> <span class="n">designed</span> <span class="n">for</span> <span class="n">comparison</span> <span class="n">of</span> <span class="n">two</span> <span class="n">Hi</span><span class="o">-</span><span class="n">C</span> <span class="n">samples</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="o">:</span>
+  <span class="n">type</span>                  <span class="n">Type</span> <span class="n">of</span> <span class="m">1</span><span class="n">D</span> <span class="n">metrics</span> <span class="n">for</span> <span class="n">two</span><span class="o">-</span><span class="n">sample</span> <span class="n">comparison</span><span class="p">,</span><span class="n">should</span> <span class="n">be</span>
+                        <span class="n">one</span> <span class="n">of</span> <span class="p">{</span><span class="n">ISC</span><span class="p">,</span><span class="n">CIC</span><span class="p">,</span><span class="n">SSC</span><span class="p">,</span><span class="n">deltaDLR</span><span class="p">,</span><span class="n">CD</span><span class="p">,</span><span class="n">IESC</span><span class="p">,</span><span class="n">IASC</span><span class="p">,</span><span class="n">IFC</span><span class="p">,</span><span class="n">DRF</span><span class="p">}</span>
+  <span class="n">matrix</span>                <span class="n">Path</span> <span class="n">of</span> <span class="n">treated</span> <span class="nf">file </span><span class="p">(</span><span class="n">matrix</span> <span class="n">or</span> <span class="n">rawhic</span><span class="p">)</span><span class="n">.</span>
+  <span class="n">controlmatrix</span>         <span class="n">Path</span> <span class="n">of</span> <span class="n">control</span> <span class="nf">file </span><span class="p">(</span><span class="n">matrix</span> <span class="n">or</span> <span class="n">rawhic</span><span class="p">)</span><span class="n">.</span>
+  <span class="n">resolution</span>            <span class="n">Resolution</span> <span class="n">of</span> <span class="n">input</span> <span class="n">matrix</span>
+  <span class="n">chromosome</span>            <span class="n">Chromosome</span> <span class="nf">number </span><span class="p">(</span><span class="s">&#39;chr21&#39;</span><span class="p">,</span><span class="n">i.e</span><span class="p">)</span><span class="n">.</span>
+
+<span class="n">optional</span> <span class="n">arguments</span><span class="o">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">p</span> <span class="n">PARAMETER</span><span class="p">,</span> <span class="o">--</span><span class="n">parameter</span> <span class="n">PARAMETER</span>
+                        <span class="n">Parameter</span> <span class="n">for</span> <span class="n">indicated</span> <span class="n">metrics</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">OUTNAME</span><span class="p">,</span> <span class="o">--</span><span class="n">outname</span> <span class="n">OUTNAME</span>
+                        <span class="n">output</span> <span class="nf">name </span><span class="p">(</span><span class="n">default</span><span class="o">:</span> <span class="n">metricsChange</span><span class="p">)</span>
+  <span class="o">-</span><span class="n">d</span><span class="p">,</span> <span class="o">--</span><span class="n">draw</span>            <span class="n">Plot</span> <span class="n">figure</span> <span class="n">for</span> <span class="n">candidate</span> <span class="n">region</span>
+  <span class="o">-</span><span class="n">s</span> <span class="n">START</span><span class="p">,</span> <span class="o">--</span><span class="n">start</span> <span class="n">START</span>
+                        <span class="n">Start</span> <span class="n">sites</span> <span class="n">for</span> <span class="n">plotting</span>
+  <span class="o">-</span><span class="n">e</span> <span class="n">END</span><span class="p">,</span> <span class="o">--</span><span class="n">end</span> <span class="n">END</span>     <span class="n">End</span> <span class="n">sites</span> <span class="n">for</span> <span class="n">plotting</span>
+  <span class="o">--</span><span class="n">datatype</span> <span class="n">DATATYPE</span>   <span class="n">matrix</span> <span class="n">or</span> <span class="n">rawhic</span>
+  <span class="o">--</span><span class="n">gt</span> <span class="n">GT</span>               <span class="n">genome</span> <span class="n">table</span> <span class="n">file</span>
+</pre></div>
+</div>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> : type of 1D metrics could be one of {ISC,CIC,SSC,deltaDLR,CD,IESC,IASC,IFC,DRF}:</p>
+<ul class="simple">
+<li><p>Insulation Score Change (<strong>ISC</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/22495300/">PMID: 22495300</a>)</p></li>
+<li><p>Insulation Score (<strong>IS</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26030525/">PMID: 26030525</a>)</p></li>
+<li><p>Contrast Index (<strong>CI</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/24981874/">PMID: 24981874</a>)</p></li>
+<li><p>TAD separation score (<strong>SS</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29335486/">PMID: 26431028</a>)</p></li>
+<li><p>Distal-to-Local Ratio (<strong>DLR</strong>)  (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30146161/">PMID: 30146161</a>)</p></li>
+<li><p>Compartment PC1 (<strong>PC1</strong>) (<a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/19815776/">PMID: 19815776</a>)</p></li>
+<li><p>IntraTADscore (<strong>IAS</strong>) (Original metric)</p></li>
+<li><p>InterTADscore (<strong>IES</strong>) (Original metric)</p></li>
+<li><p>Interaction Frequency (<strong>IF</strong>)(Original metric)</p></li>
+</ul>
+<p>Details is shown in our paper:  <em>link in the future</em></p>
+</li>
+</ul>
+</div>
+<div class="section" id="calculate-1d-metrics-two-sample">
+<h2>3.3 Calculate 1D metrics (two-sample)<a class="headerlink" href="#calculate-1d-metrics-two-sample" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="visualize-1d-metrics-two-sample">
+<h2>3.4 Visualize 1D metrics (two-sample)<a class="headerlink" href="#visualize-1d-metrics-two-sample" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -171,6 +240,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="multitype.html" class="btn btn-neutral float-right" title="4. Obtain various types of 1D metrics for the same sample" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="onesample.html" class="btn btn-neutral float-left" title="2. Calculate 1D metrics for one sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

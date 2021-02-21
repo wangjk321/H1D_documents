@@ -3,7 +3,7 @@
 ## 2.1 Quick start
 
 ```shell
-h1d one IS ./test_data/Control_1/observed.KR.chr21.matrix.gz \
+h1d one IS ./test_data/Control/observed.KR.chr21.matrix.gz \
 		50000 chr21 -o Control_IS_chr21
 ```
 
@@ -66,44 +66,67 @@ optional arguments:
 
 - `-p, --parameter` for each 1D metric is :
 
-  | Type | Description | default value |
-  | ---- | ----------- | ------------- |
-  | DI   | length of   | 1000000       |
-  | IS   | square size | 300000        |
-  | CI   |             |               |
-  | SS   |             |               |
-  | DLR  |             |               |
-  | PC1  |             |               |
-  | IAS  |             |               |
-  | IES  |             |               |
-  | IF   |             |               |
+  | Type | Description       | default value                                                |
+  | ---- | ----------------- | ------------------------------------------------------------ |
+  | DI   | length of         | 1000000                                                      |
+  | IS   | square size       | 300000                                                       |
+  | CI   |                   |                                                              |
+  | SS   |                   |                                                              |
+  | DLR  |                   |                                                              |
+  | PC1  | gene density file | None (The sign of eigenvector is arbitrary unless specify a geneDensity file) |
+  | IAS  |                   |                                                              |
+  | IES  |                   |                                                              |
+  | IF   |                   |                                                              |
 
   
 
 
 
-## 2.3 Calculate 1D metrics
+## 2.3 Calculate 1D metrics (one-sample)
 
 - Use contact matrix:
 
   ```shell
   h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz \
-  	50000 chr21 -p 300000 -o control_IS_chr21 --datatype matrix
+  	50000 chr21 -p 300000 -o control_CI_chr21 --datatype matrix
   ```
 
 - Use raw `.hic` file:
 
   ``` shell
-  h1d one IS ./test_data/Control/inter_30.hic \
-  	50000 chr21  -p 300000 -o control_IS_chr21 --datatype rawhic \
-  	--gt h1d/gd/hg19/genome_table
+  h1d one CI ./test_data/Control/inter_30.hic \
+  	50000 chr21  -p 300000 -o control_CI_chr21 --datatype rawhic \
+  	--gt ./reference/genome_table
   ```
 
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;">
 Calculation of IF only support rawhic datatype
 </div>
 
-## 2.4 Visulize 1D metrics
+
+Output will be `control_CI_chr21.bedGraph` as described before. 
 
 
+
+## 2.4 Visulize 1D metrics (one-sample)
+
+- Use contact matrix:
+
+  ``` shell
+  h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz \
+  	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype matrix \
+    --draw -s 26000000 -e 33000000
+  ```
+
+- Use raw matrix:
+
+  ```shell
+  h1d one CI ./test_data/Control/inter_30.hic \
+  	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype rawhic \
+  	--gt ./reference/genome_table --draw -s 26000000 -e 33000000
+  ```
+
+The output will be `control_CI_chr21.bedGraph` and `control_CI_chr21.pdf`:
+
+​	<img src="_static/2-4.pdf" alt="RTDimport" style="zoom:60%;" />
 
