@@ -90,7 +90,17 @@
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Obtain the same metrics for muliple samples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Obtain the same metrics for muliple samples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#calculation">5.1 Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">5.2 Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization">5.3 Visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#correlation-map-of-all-samples">5.3.1 Correlation map of all samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-chart-or-multiple-samples">5.3.2 Line chart or multiple samples:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heatmap-or-multiple-samples">5.3.3 Heatmap or multiple samples:</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
@@ -162,6 +172,160 @@
             
   <div class="section" id="obtain-the-same-metrics-for-muliple-samples">
 <h1>5. Obtain the same metrics for muliple samples<a class="headerlink" href="#obtain-the-same-metrics-for-muliple-samples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="calculation">
+<h2>5.1 Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1d</span> <span class="n">multisamples</span> <span class="n">IS</span> <span class="n">test</span><span class="o">.</span><span class="n">txt</span> <span class="mi">50000</span> <span class="n">chr21</span> <span class="o">-</span><span class="n">o</span> <span class="n">multisamples_metrics</span>
+</pre></div>
+</div>
+<p>The output would be <code class="docutils literal notranslate"><span class="pre">multisamples_metrics.csv</span></code>:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr</th>
+<th>start</th>
+<th>end</th>
+<th>Control1</th>
+<th>Control2</th>
+<th>Treat1</th>
+<th>Treat2</th>
+<th>...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>23900000</td>
+<td>23950000</td>
+<td>0.600162</td>
+<td>0.658727</td>
+<td>0.734661</td>
+<td>0.692226</td>
+<td>...</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>23950000</td>
+<td>24000000</td>
+<td>0.610387</td>
+<td>0.674535</td>
+<td>0.721764</td>
+<td>0.70977</td>
+<td>...</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="parameters">
+<h2>5.2 Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h1d multisamples
+usage: h1d multisamples [-h] [--datatype DATATYPE]
+                        [--samplelist SAMPLELIST] [--labels LABELS]
+                        [-p PARAMETER] [-o OUTNAME] [--gt GT] [--corr]
+                        [--heat] [--line] [-s START] [-e END]
+                        type data resolution chromosome
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Required parameters</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>, type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}, as <a class="reference external" href="https://h1d.readthedocs.io/en/latest/onesample.html#usage">described</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, a tsv (Tab-separated) file contain name and paths for all samples, for example:</p></li>
+</ul>
+</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Control1</th>
+<th>./testdata/Control1/observed.KR.chr21.matrix.gz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control1</td>
+<td>./testdata/Control2/observed.KR.chr21.matrix.gz</td>
+</tr>
+<tr>
+<td>Treat1</td>
+<td>./testdata/Treat1/observed.KR.chr21.matrix.gz</td>
+</tr>
+<tr>
+<td>Treat2</td>
+<td>./testdata/Treat2/observed.KR.chr21.matrix.gz</td>
+</tr>
+<tr>
+<td>Treat3</td>
+<td>./testdata/Treat3/observed.KR.chr21.matrix.gz</td>
+</tr>
+<tr>
+<td>Treat4</td>
+<td>./testdata/Treat4/observed.KR.chr21.matrix.gz</td>
+</tr>
+</tbody>
+</table><p>​	Used file could be contact matrix or raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> as introduced <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">here</a></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code>, selected chromosome to be analyzed.</p></li>
+<li><p>Optional parameters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--datatype</span></code>, type of input data: “matrix” (default) or “rawhic”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, parameters  for <a class="reference external" href="https://h1d.readthedocs.io/en/latest/onesample.html#usage">one-sample</a>  metrics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>,  output name, default: multisamples_metrics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gt</span></code>, <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">genome table file</a> when using raw .hic data.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="visualization">
+<h2>5.3 Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--corr</span></code>, Plot correlation for all samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--heat</span></code>, Plot raw heatmap for all samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--line</span></code>, Plot line chart for all samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code>, start site of plot when using <code class="docutils literal notranslate"><span class="pre">--corr</span></code> and <code class="docutils literal notranslate"><span class="pre">--line</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>, end site of plot when using <code class="docutils literal notranslate"><span class="pre">--corr</span></code> and <code class="docutils literal notranslate"><span class="pre">--line</span></code>.</p></li>
+</ul>
+<div class="section" id="correlation-map-of-all-samples">
+<h3>5.3.1 Correlation map of all samples<a class="headerlink" href="#correlation-map-of-all-samples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multisamples IS test.txt <span class="m">50000</span> chr21 <span class="se">\</span>
+	-o multisamples_metrics --corr
+</pre></div>
+</div>
+<img src="_static/5-3-1.pdf" alt="RTDimport" style="zoom:70%;" /></div>
+<div class="section" id="line-chart-or-multiple-samples">
+<h3>5.3.2 Line chart or multiple samples:<a class="headerlink" href="#line-chart-or-multiple-samples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multisamples IS test.txt <span class="m">50000</span> chr21 -o multisamples_metrics <span class="se">\</span>
+	--line -s <span class="m">24500000</span> -e <span class="m">34500000</span>
+</pre></div>
+</div>
+<img src="_static/5-3-2.pdf" alt="RTDimport" style="zoom:80%;" /></div>
+<div class="section" id="heatmap-or-multiple-samples">
+<h3>5.3.3 Heatmap or multiple samples:<a class="headerlink" href="#heatmap-or-multiple-samples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multisamples IS test.txt <span class="m">50000</span> chr21 -o multisamples_metrics <span class="se">\</span>
+	--heat -s <span class="m">24500000</span> -e <span class="m">34500000</span>
+</pre></div>
+</div>
+<img src="_static/5-3-3.pdf" alt="RTDimport" style="zoom:80%;" /></div>
+</div>
 </div>
 
 

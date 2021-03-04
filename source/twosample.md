@@ -60,17 +60,17 @@ optional arguments:
 
 - `-p ` or `--parameter` for each metrics:
 
-  | Type     | Description                               | default value |
-  | -------- | ----------------------------------------- | ------------- |
-  | ISC      | length of                                 | 1000000       |
-  | CIC      | square size                               | 300000        |
-  | SSC      |                                           |               |
-  | deltaDLR |                                           |               |
-  | CD       | Correlation method                        | pearson       |
-  | IASC     |                                           |               |
-  | IESC     |                                           |               |
-  | IFC      | FDR threshold for signficant interactions | 0.05          |
-  | DRF      |                                           |               |
+  | Type     | Description                               | default value  |
+  | -------- | ----------------------------------------- | -------------- |
+  | ISC      | length of                                 | 300000         |
+  | CIC      | square size                               | 300000         |
+  | SSC      |                                           | 300000         |
+  | deltaDLR |                                           | 3000000        |
+  | CD       | Correlation method                        | pearson        |
+  | IASC     |                                           | 300000         |
+  | IESC     |                                           | 300000         |
+  | IFC      | FDR threshold for signficant interactions | 0.05           |
+  | DRF      |                                           | 200000-5000000 |
 
   
 
@@ -100,7 +100,20 @@ optional arguments:
 - Use contact matrix:
 
   ``` shell
-  h1d two CIC ./test_data/Rad21KD_1/observed.KR.chr21.matrix.gz ./test_data/Control_1/observed.KR.chr21.matrix.gz 50000 chr21 --datatype matrix -p 300000 -o treat_vs_control_ISC --draw -s 26000000 -e 33000000
+  h1d two CIC ./test_data/Treat/observed.KR.chr21.matrix.gz \
+  	./test_data/Control/observed.KR.chr21.matrix.gz 50000 chr21 \
+	  --datatype matrix -p 300000 -o treat_vs_control_ISC \
+  	--draw -s 26000000 -e 33000000
+  ```
+  
+- Use raw `.hic` file
+
+  ```shell
+  h1d two CIC ./test_data/Treat/inter_30.hic \
+  	./test_data/Control/inter_30.hic 50000 chr21 \
+  	--datatype rawhic --gt ./reference/genome_table \
+  	-p 300000 -o treat_vs_control_ISC \
+  	--draw -s 26000000 -e 33000000
   ```
 
   

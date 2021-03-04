@@ -70,8 +70,8 @@ optional arguments:
   | ---- | ----------------- | ------------------------------------------------------------ |
   | DI   | length of         | 1000000                                                      |
   | IS   | square size       | 300000                                                       |
-  | CI   |                   |                                                              |
-  | SS   |                   |                                                              |
+  | CI   |                   | 300000                                                       |
+  | SS   |                   | 300000                                                       |
   | DLR  |                   |                                                              |
   | PC1  | gene density file | None (The sign of eigenvector is arbitrary unless specify a geneDensity file) |
   | IAS  |                   |                                                              |

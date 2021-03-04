@@ -12,6 +12,15 @@ HiC1Dmetrics were released on PyPI, and could be accessed by:
 pip3 install h1d
 ```
 
+After installation, try:
+
+```
+$ h1d -V
+h1d version 0.0.21
+```
+
+
+
 ## 1.3 Requirements
 
 HiC1Dmetrics is based on python3 and it requires:
@@ -37,7 +46,7 @@ HiC1Dmetrics support:
 
 - raw `.hic` defined by [juicer](https://github.com/aidenlab/juicer/wiki) software.
 
-- or dense matrix (raw or zipped) of intra-chromosomal contacts, like:
+- OR dense matrix (raw or zipped) of intra-chromosomal contacts, like:
 
   |       |  0   | 25000 | 50000 | 75000 | ...  |
   | :---: | :--: | :---: | :---: | :---: | ---- |
@@ -47,12 +56,14 @@ HiC1Dmetrics support:
   | 75000 |  0   |   5   |   4   |   0   | ...  |
   |  ...  | ...  |  ...  |  ...  |  ...  | ...  |
 
-**Note:** when use `.hic` file, a genome table file (tab-separated) must be prepared, which described the length of each chromosome for your genome reference: 
+**Note 1:** when use `.hic` file, a genome table file (tab-separated) must be prepared, which described the length of each chromosome for your genome reference: 
 
 | chr1 | 248956422 |
 | ---- | --------- |
 | chr2 | 242193529 |
 | ...  | ...       |
+
+**Note 2:** Calculation of Interaction Frequency (IF) can only accept raw `.hic` file
 
 ## 1.5 Overall usage
 

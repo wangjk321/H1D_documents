@@ -14,7 +14,7 @@ This command would generate a bedGraph file (`treat_vs_control_ISC.bedGraph`) fo
 
 The analysis of two-sample metrics cound be run by `h1d two` sub-command :
 
-``` s
+``` 
 $ h1d two -h # type -h for help
 usage: __main__.py two [-h] [-p PARAMETER] [-o OUTNAME] [-d] [-s START]
                        [-e END] [--datatype DATATYPE] [--gt GT]
@@ -46,25 +46,79 @@ optional arguments:
 
 - `type` : type of 1D metrics could be one of {ISC,CIC,SSC,deltaDLR,CD,IESC,IASC,IFC,DRF}:
 
-  - Insulation Score Change (**ISC**) ([PMID: 22495300](https://pubmed.ncbi.nlm.nih.gov/22495300/))
-  - Insulation Score (**IS**) ([PMID: 26030525](https://pubmed.ncbi.nlm.nih.gov/26030525/))
-  - Contrast Index (**CI**) ([PMID: 24981874](https://pubmed.ncbi.nlm.nih.gov/24981874/))
-  - TAD separation score (**SS**) ([PMID: 26431028](https://pubmed.ncbi.nlm.nih.gov/29335486/))
-  - Distal-to-Local Ratio (**DLR**)  ([PMID: 30146161](https://pubmed.ncbi.nlm.nih.gov/30146161/))
-  - Compartment PC1 (**PC1**) ([PMID: 19815776](https://pubmed.ncbi.nlm.nih.gov/19815776/))
-  - IntraTADscore (**IAS**) (Original metric)
-  - InterTADscore (**IES**) (Original metric)
-  - Interaction Frequency (**IF**)(Original metric)
+  - Insulation Score Change (**ISC**) ([PMID: 31495782](https://pubmed.ncbi.nlm.nih.gov/31495782/))
+  - Contrast Index Change(**CIC**)
+  - Separation Score Change(**SSC**)
+  - Delta Distal-to-Local Ratio (**deltaDLR**) ([PMID: 30146161](https://pubmed.ncbi.nlm.nih.gov/30146161/))
+  - Correlation Difference (**CD**)  ([PMID: 20513432](https://pubmed.ncbi.nlm.nih.gov/20513432/))
+  - IntraScore Change(**IASC**) 
+  - InterScore Change (**IESC**)
+  - Interaction Frequency Change (**IFC**) 
+  - Directional Relative Frequency (**DRF**)(Original metric)
 
   Details is shown in our paper:  *link in the future*
 
+- `-p ` or `--parameter` for each metrics:
 
+  | Type     | Description                               | default value  |
+  | -------- | ----------------------------------------- | -------------- |
+  | ISC      | length of                                 | 300000         |
+  | CIC      | square size                               | 300000         |
+  | SSC      |                                           | 300000         |
+  | deltaDLR |                                           | 3000000        |
+  | CD       | Correlation method                        | pearson        |
+  | IASC     |                                           | 300000         |
+  | IESC     |                                           | 300000         |
+  | IFC      | FDR threshold for signficant interactions | 0.05           |
+  | DRF      |                                           | 200000-5000000 |
 
-
+  
 
 ## 3.3 Calculate 1D metrics (two-sample)
 
+- Use contact matrix:
+
+  ``` shell
+  h1d two ISC ./test_data/Treat/observed.KR.chr21.matrix.gz \
+  	./test_data/Control/observed.KR.chr21.matrix.gz 50000 chr21 \
+  	--datatype matrix -p 300000 -o treat_vs_control_ISC
+  ```
+
+- Use raw hic:
+
+  ``` shell
+  h1d two ISC ./test_data/Treat/inter_30.hic \
+  	./test_data/Control/inter_30.hic 50000 chr21 \
+  	--datatype rawhic --gt ./reference/genome_table \
+  	-p 300000 -o treat_vs_control_ISC
+  ```
+
+  
+
 ## 3.4 Visualize 1D metrics (two-sample)
 
+- Use contact matrix:
 
+  ``` shell
+  h1d two CIC ./test_data/Treat/observed.KR.chr21.matrix.gz \
+  	./test_data/Control/observed.KR.chr21.matrix.gz 50000 chr21 \
+	  --datatype matrix -p 300000 -o treat_vs_control_ISC \
+  	--draw -s 26000000 -e 33000000
+  ```
+  
+- Use raw `.hic` file
+
+  ```shell
+  h1d two CIC ./test_data/Treat/inter_30.hic \
+  	./test_data/Control/inter_30.hic 50000 chr21 \
+  	--datatype rawhic --gt ./reference/genome_table \
+  	-p 300000 -o treat_vs_control_ISC \
+  	--draw -s 26000000 -e 33000000
+  ```
+
+  
+
+
+
+<img src="_static/3-4.pdf" alt="RTDimport" style="zoom:60%;" />
 

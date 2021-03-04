@@ -89,7 +89,12 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview and Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Obtain various types of 1D metrics for the same sample</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#calculation">4.1 Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">4.2 Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visuliazation">4.3 Visuliazation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
@@ -162,6 +167,122 @@
             
   <div class="section" id="obtain-various-types-of-1d-metrics-for-the-same-sample">
 <h1>4. Obtain various types of 1D metrics for the same sample<a class="headerlink" href="#obtain-various-types-of-1d-metrics-for-the-same-sample" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="calculation">
+<h2>4.1 Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multitypes IS,CI,DI <span class="se">\</span>
+	./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -p <span class="m">300000</span>,300000,1000000 
+	--datatype matrix -o multi_types_metric
+</pre></div>
+</div>
+<p>This will output a csv file <code class="docutils literal notranslate"><span class="pre">multi_types_metric.csv</span></code> like：</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr</th>
+<th>start</th>
+<th>end</th>
+<th>InsulationScore</th>
+<th>ContrastIndex</th>
+<th>DirectionalityIndex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>23900000</td>
+<td>23950000</td>
+<td>0.652077</td>
+<td>0.667196</td>
+<td>-3.776812</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>23950000</td>
+<td>24000000</td>
+<td>0.636362</td>
+<td>0.678699</td>
+<td>-3.448456</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="parameters">
+<h2>4.2 Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h1d multitypes
+usage: h1d multitypes [-h] -p PARAMETER [-c CONTROLMATRIX]
+                      [-o OUTNAME] [--datatype DATATYPE] [--gt GT]
+                      [-d] [-s START] [-e END]
+                      typelist data resolution chromosome
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Required parameters</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">typelist</span></code> the list of types separated by comma.</p>
+<ul>
+<li><p>When calculating one-sample metrics, it should be subset of [IS,CI,DI,SS,DLR,PC1,IES,IAS,IF].</p></li>
+<li><p>When calculating two-sample metrics, it should be subset of [ISC,CIC,SSC,deltaDLR,CD,IESC,IASC,IFC,DRF]</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, Path of matrix file or raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>, resolution (50000, i.e.) of given contact matrix, or choosed resolution for <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code>, selected chromosome to be analyzed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, list of parameters (comma-separated). Please refer to <a class="reference external" href="https://h1d.readthedocs.io/en/latest/onesample.html#usage">one-sample</a> or <a class="reference external" href="https://h1d.readthedocs.io/en/latest/twosample.html#usage">two-sample</a> metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Optional parameters</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>, output name, default: multitypes_metrics</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>, contact matrix or .hic file of control sample, which is required when calculating two-sample metrics.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--datatype</span></code>, type of input data: “matrix” (default) or “rawhic”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gt</span></code>, <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">genome table file</a> when using raw .hic data.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="visuliazation">
+<h2>4.3 Visuliazation<a class="headerlink" href="#visuliazation" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">-d</span></code>, decide whether to plot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-s</span></code>, start site for plot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-e</span></code>, end site for plot.</p>
+<ul class="simple">
+<li><p>Visulize one-sample metrics (output will be <code class="docutils literal notranslate"><span class="pre">all_onesample.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">all_onesample.pdf</span></code>)</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF <span class="se">\</span>
+	./test_data/Control/inter_30.hic <span class="m">50000</span> chr21 
+	-p <span class="m">300000</span>,300000,1000000,300000,3000000,./test_data/gd50000.txt,300000,300000,0.05 
+	--datatype rawhic --gt ./hg19/genome_table 
+	-o all_onesample -d -s <span class="m">24500000</span> -e <span class="m">34500000</span>
+</pre></div>
+</div>
+<img src="_static/4-3-1.pdf" alt="RTDimport" style="zoom:80%;" /><ul class="simple">
+<li><p>Visulize two-sample metrics: (output will be <code class="docutils literal notranslate"><span class="pre">all_twosample.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">all_twosample.pdf</span></code>)</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d multitypes ISC,CIC,SSC,deltaDLR,CD,IASC,IESC,IFC,DRF <span class="se">\</span>
+	./test_data/Treat/inter_30.hic <span class="m">50000</span> chr21 <span class="se">\</span>
+	-c ./test_data/Control/inter_30.hic
+	-p <span class="m">300000</span>,300000,300000,3000000,pearson,300000,300000,0.05,200000-5000000 <span class="se">\ </span>
+	--datatype rawhic --gt .hg19/genome_table <span class="se">\</span>
+	-o all_twosample -d -s <span class="m">24500000</span> -e <span class="m">34500000</span>
+</pre></div>
+</div>
+<img src="_static/4-3-2.pdf" alt="RTDimport" style="zoom:80%;" /></div>
 </div>
 
 

@@ -96,6 +96,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
             
@@ -175,6 +179,11 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">h1d</span>
 </pre></div>
 </div>
+<p>After installation, try:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h1d -V
+h1d version 0.0.21
+</pre></div>
+</div>
 </div>
 <div class="section" id="requirements">
 <h2>1.3 Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
@@ -206,7 +215,7 @@
 <p>HiC1Dmetrics support:</p>
 <ul class="simple">
 <li><p>raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> defined by <a class="reference external" href="https://github.com/aidenlab/juicer/wiki">juicer</a> software.</p></li>
-<li><p>or dense matrix (raw or zipped) of intra-chromosomal contacts, like:</p></li>
+<li><p>OR dense matrix (raw or zipped) of intra-chromosomal contacts, like:</p></li>
 </ul>
 <table border="1" class="docutils">
 <thead>
@@ -261,7 +270,7 @@
 <td>...</td>
 </tr>
 </tbody>
-</table><p><strong>Note:</strong> when use <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file, a genome table file (tab-separated) must be prepared, which described the length of each chromosome for your genome reference:</p>
+</table><p><strong>Note 1:</strong> when use <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file, a genome table file (tab-separated) must be prepared, which described the length of each chromosome for your genome reference:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -279,7 +288,8 @@
 <td>...</td>
 </tr>
 </tbody>
-</table></div>
+</table><p><strong>Note 2:</strong> Calculation of Interaction Frequency (IF) can only accept raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file</p>
+</div>
 <div class="section" id="overall-usage">
 <h2>1.5 Overall usage<a class="headerlink" href="#overall-usage" title="Permalink to this headline">¶</a></h2>
 <p>The function of HiC1Dmetrics include serveral sub-command:</p>
@@ -297,7 +307,7 @@ positional arguments:
                         stripeTAD, et.al)
 </pre></div>
 </div>
-<p>In the next section, we use a high-resolution Hi-C data by Rao et,al. (<a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104334">GSE104334</a>) to make this tutorial</p>
+<p>In the next section, we mainly use a high-resolution Hi-C data by Rao et,al. (<a class="reference external" href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104334">GSE104334</a>) to make this tutorial</p>
 </div>
 </div>
 
