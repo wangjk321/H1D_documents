@@ -4,6 +4,8 @@
 
 We presented “HiC1Dmetrics”, a pipeline that are able to calculate and analysis one-dimensional (1D) metrics for Hi-C data. HiC1Dmetrics is a Python3-based program (<https://github.com/wangjk321/HiC1Dmetrics>) and provide command line interface for UNIX system. 
 
+<img src="_static/Figure1.png" alt="RTDimport" style="zoom:60%;" />
+
 ## 1.2 Installation
 
 HiC1Dmetrics were released on PyPI, and could be accessed by:

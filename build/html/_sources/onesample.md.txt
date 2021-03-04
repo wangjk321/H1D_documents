@@ -128,5 +128,5 @@ Output will be `control_CI_chr21.bedGraph` as described before.
 
 The output will be `control_CI_chr21.bedGraph` and `control_CI_chr21.pdf`:
 
-​	<img src="_static/2-4.pdf" alt="RTDimport" style="zoom:60%;" />
+​	<img src="_static/2-4.png" alt="RTDimport" style="zoom:60%;" />
 

@@ -68,7 +68,7 @@ h1d multisamples IS test.txt 50000 chr21 \
 	-o multisamples_metrics --corr
 ```
 
-<img src="_static/5-3-1.pdf" alt="RTDimport" style="zoom:70%;" />
+<img src="_static/5-3-1.png" alt="RTDimport" style="zoom:20%;" />
 
 ### 5.3.2 Line chart or multiple samples:
 
@@ -77,7 +77,7 @@ h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
 	--line -s 24500000 -e 34500000
 ```
 
-<img src="_static/5-3-2.pdf" alt="RTDimport" style="zoom:80%;" />
+<img src="_static/5-3-2.png" alt="RTDimport" style="zoom:50%;" />
 
 ### 5.3.3 Heatmap or multiple samples:
 
@@ -86,4 +86,4 @@ h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
 	--heat -s 24500000 -e 34500000
 ```
 
-<img src="_static/5-3-3.pdf" alt="RTDimport" style="zoom:80%;" />
+<img src="_static/5-3-3.png" alt="RTDimport" style="zoom:50%;" />

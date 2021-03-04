@@ -62,7 +62,7 @@ h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF \
 	-o all_onesample -d -s 24500000 -e 34500000
 ```
 
-<img src="_static/4-3-1.pdf" alt="RTDimport" style="zoom:80%;" />
+<img src="_static/4-3-1.png" alt="RTDimport" style="zoom:50%;" />
 
 - Visulize two-sample metrics: (output will be `all_twosample.csv` and `all_twosample.pdf`)
 
@@ -75,4 +75,4 @@ h1d multitypes ISC,CIC,SSC,deltaDLR,CD,IASC,IESC,IFC,DRF \
 	-o all_twosample -d -s 24500000 -e 34500000
 ```
 
-<img src="_static/4-3-2.pdf" alt="RTDimport" style="zoom:80%;" />
+<img src="_static/4-3-2.png" alt="RTDimport" style="zoom:50%;" />

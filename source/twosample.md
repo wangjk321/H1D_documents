@@ -120,5 +120,5 @@ optional arguments:
 
 
 
-<img src="_static/3-4.pdf" alt="RTDimport" style="zoom:60%;" />
+<img src="_static/3-4.png" alt="RTDimport" style="zoom:60%;" />
 

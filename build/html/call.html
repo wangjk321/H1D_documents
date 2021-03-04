@@ -92,7 +92,12 @@
 <li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#under-construction">6.1 under construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">6.1 Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">6.2 Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dtad">6.3 dTAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stripe-tad">6.4 stripe-TAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hubs">6.5 Hubs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tad">6.6 TAD</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
@@ -165,8 +170,187 @@
             
   <div class="section" id="extract-secondary-information-from-metrics-dtad-stripetad-etc">
 <h1>6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)<a class="headerlink" href="#extract-secondary-information-from-metrics-dtad-stripetad-etc" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-construction">
-<h2>6.1 under construction<a class="headerlink" href="#under-construction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="quick-start">
+<h2>6.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call stripe ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -o testname
+</pre></div>
+</div>
+<p>The output will be: <code class="docutils literal notranslate"><span class="pre">testname_stripe.csv</span></code></p>
+</div>
+<div class="section" id="parameters">
+<h2>6.2 Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1d</span> <span class="n">call</span> <span class="o">-</span><span class="n">h</span>
+<span class="n">usage</span><span class="p">:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">py</span> <span class="n">call</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTNAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONTROLMATRIX</span><span class="p">]</span>
+                        <span class="p">[</span><span class="o">--</span><span class="n">datatype</span> <span class="n">DATATYPE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">gt</span> <span class="n">GT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PARAMETER</span><span class="p">]</span>
+                        <span class="n">mode</span> <span class="n">matrix</span> <span class="n">resolution</span> <span class="n">chromosome</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Required parameters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>, Running mode,,should be one of {dTAD,stripe,TAD,hubs}</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, Path of matrix file or raw .hic file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code>, selected chromosome to be analyzed.</p></li>
+</ul>
+</li>
+<li><p>Optional parameters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>,  output name, default: defaultname</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>, contact matrix or .hic file of control sample, which is required when using “dTAD” mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--datatype</span></code>, type of input data: “matrix” (default) or “rawhic”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gt</span></code>, <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">genome table file</a> when using raw .hic data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, parameters  for particular mode:</p></li>
+</ul>
+</li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>mode</th>
+<th>Which parameter</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dTAD</td>
+<td>for DRF</td>
+<td>200000-5000000</td>
+</tr>
+<tr>
+<td>stripe</td>
+<td>for IAS</td>
+<td>300000</td>
+</tr>
+<tr>
+<td>TAD</td>
+<td>for IS</td>
+<td>300000</td>
+</tr>
+<tr>
+<td>Hubs</td>
+<td>for IF</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="dtad">
+<h2>6.3 dTAD<a class="headerlink" href="#dtad" title="Permalink to this headline">¶</a></h2>
+<p>h1d provide the function to call dTAD as</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call dTAD ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 -c ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+  --datatype matrix -o testname -p <span class="m">200000</span>-5000000
+</pre></div>
+</div>
+<p>The output will be <code class="docutils literal notranslate"><span class="pre">testname_leftdTAD.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">testname_rightdTAD.csv</span></code>, as:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr</th>
+<th>TADstart</th>
+<th>TADend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr21</td>
+<td>17900000</td>
+<td>18250000</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>26800000</td>
+<td>27700000</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="stripe-tad">
+<h2>6.4 stripe-TAD<a class="headerlink" href="#stripe-tad" title="Permalink to this headline">¶</a></h2>
+<p>This function simply divide all TAD into “loop”, “left-stripe”, “right-stripe” and “other” TAD:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="m">50000</span> chr21 <span class="se">\</span>
+	--datatype matrix -o testname -p <span class="m">300000</span>
+</pre></div>
+</div>
+<p>The output will be <code class="docutils literal notranslate"><span class="pre">testname_stripe.csv</span></code>, as:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr</th>
+<th>TADstart</th>
+<th>TADend</th>
+<th>TADtype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr21</td>
+<td>9500000</td>
+<td>10250000</td>
+<td>loopTAD</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>14800000</td>
+<td>15600000</td>
+<td>leftStripe</td>
+</tr>
+<tr>
+<td>chr21</td>
+<td>15600000</td>
+<td>16850000</td>
+<td>otherTAD</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="hubs">
+<h2>6.5 Hubs<a class="headerlink" href="#hubs" title="Permalink to this headline">¶</a></h2>
+<p>This function extract chromatin Hubs as described in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26272203/">PMID: 26272203</a></p>
+<div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"> Comutation of hubs requires rawhic input </div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call hubs ./test_data/inter_30.hic <span class="m">50000</span> chr21 <span class="se">\</span>
+	--datatype rawhic --gt ./hg19/genome_table -o testname -p <span class="m">0</span>.05
+</pre></div>
+</div>
+<p>The output will be <code class="docutils literal notranslate"><span class="pre">testname_hubs.csv</span></code> in <code class="docutils literal notranslate"><span class="pre">.bed</span></code> style, as :</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr21</th>
+<th>15450000</th>
+<th>15750000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr21</td>
+<td>15850000</td>
+<td>16000000</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="tad">
+<h2>6.6 TAD<a class="headerlink" href="#tad" title="Permalink to this headline">¶</a></h2>
+<p>This function will use Insulation Score to simply call TAD:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call TAD ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="m">50000</span> chr21 <span class="se">\</span>
+	--datatype matrix -o testname -p <span class="m">300000</span>
+</pre></div>
+</div>
 </div>
 </div>
 
