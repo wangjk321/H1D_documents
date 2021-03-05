@@ -119,14 +119,14 @@ optional arguments:
 
 - `-n`, Number of processors
 
-To run all chromosomes parallel, do:
+To run all chromosomes parallel (treat vs control), do:
 
 ```shell
-h1d one IS ./test/Control/  50000 all 
-	--maxchr 22 --prefix observed.KR. -n 30 -o control
+h1d one ISC ./test/Treat/ ./test/Control/  50000 all 
+	--maxchr 22 --prefix observed.KR. -n 30 -o treat_vs_control
 ```
 
-Output would be `control_IS_allchr.csv`.
+Output would be `treat_vs_control_IS_allchr.csv`.
 
 
 
