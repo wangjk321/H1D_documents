@@ -96,15 +96,15 @@ optional arguments:
   	50000 chr21  -p 300000 -o control_CI_chr21 --datatype rawhic \
   	--gt ./reference/genome_table
   ```
+  
+  Output will be `control_CI_chr21.bedGraph` as described before. 
 
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;">
 Calculation of IF only support rawhic datatype
 </div>
-Output will be `control_CI_chr21.bedGraph` as described before. 
+​		
 
-
-
-### 2.3.1 Multiprocessing for all chromomes:
+### Multiprocessing for all chromomes:
 
 - `chromosome` , set chromosome to "all" will compute metrics for all chromosomes.
 
@@ -112,7 +112,7 @@ Output will be `control_CI_chr21.bedGraph` as described before.
 
 - `-maxchr`, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.
 
-- `--prefix`, the prefix of matrix file, please modify the name of zipped matrix to `${prefix}chr1.matrix.gz`. If you used our dump function, the file should be:
+- `--prefix`, the prefix of matrix file, please modify the name of zipped matrix to `${prefix}chr1.matrix.gz`. If you used our [dump function](https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes), the file should be:
 
   ```
   ├── observed.KR.chr1.matrix.gz

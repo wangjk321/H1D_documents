@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" href="call.html" />
-    <link rel="prev" title="4. Obtain various types of 1D metrics for the same sample" href="multitype.html" /> 
+    <link rel="next" title="6. Obtain various types of 1D metrics for the same sample" href="multitype.html" />
+    <link rel="prev" title="4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" href="call.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,10 +89,14 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview and Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. Obtain the same metrics for muliple samples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#calculation">5.1 Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parameters">5.2 Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">5.2 Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required-parameters">Required parameters:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-parameters">Optional parameters:</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#visualization">5.3 Visualization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#correlation-map-of-all-samples">5.3.1 Correlation map of all samples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#line-chart-or-multiple-samples">5.3.2 Line chart or multiple samples:</a></li>
@@ -101,7 +105,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">6. Obtain various types of 1D metrics for the same sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
@@ -244,13 +248,11 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
                         type data resolution chromosome
 </pre></div>
 </div>
+<div class="section" id="required-parameters">
+<h3>Required parameters:<a class="headerlink" href="#required-parameters" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Required parameters</strong>:</p>
-<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>, type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}, as <a class="reference external" href="https://h1d.readthedocs.io/en/latest/onesample.html#usage">described</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, a tsv (Tab-separated) file contain name and paths for all samples, for example:</p></li>
-</ul>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, a tsv (Tab-separated) file contain name and paths for all samples (below). Used file could be contact matrix or raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> as introduced <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">here</a></p></li>
 </ul>
 <table border="1" class="docutils">
 <thead>
@@ -281,19 +283,20 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
 <td>./testdata/Treat4/observed.KR.chr21.matrix.gz</td>
 </tr>
 </tbody>
-</table><p>​	Used file could be contact matrix or raw <code class="docutils literal notranslate"><span class="pre">.hic</span></code> as introduced <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">here</a></p>
-<ul class="simple">
+</table><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code>, selected chromosome to be analyzed.</p></li>
-<li><p>Optional parameters:</p>
-<ul>
+</ul>
+</div>
+<div class="section" id="optional-parameters">
+<h3>Optional parameters:<a class="headerlink" href="#optional-parameters" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--datatype</span></code>, type of input data: “matrix” (default) or “rawhic”.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, parameters  for <a class="reference external" href="https://h1d.readthedocs.io/en/latest/onesample.html#usage">one-sample</a>  metrics.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>,  output name, default: multisamples_metrics</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--gt</span></code>, <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">genome table file</a> when using raw .hic data.</p></li>
 </ul>
-</li>
-</ul>
+</div>
 </div>
 <div class="section" id="visualization">
 <h2>5.3 Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
@@ -334,8 +337,8 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="call.html" class="btn btn-neutral float-right" title="6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="multitype.html" class="btn btn-neutral float-left" title="4. Obtain various types of 1D metrics for the same sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multitype.html" class="btn btn-neutral float-right" title="6. Obtain various types of 1D metrics for the same sample" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="call.html" class="btn btn-neutral float-left" title="4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

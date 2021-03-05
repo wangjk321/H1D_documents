@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" href="call.html" /> 
+    <link rel="prev" title="6. Obtain various types of 1D metrics for the same sample" href="multitype.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,12 +88,15 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview and Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">6. Obtain various types of 1D metrics for the same sample</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">7. Provide basic functions to visualize and handle Hi-C data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#plot-indicated-region">7.1 Plot indicated region</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#make-contact-matrix">7.2 Make contact matrix.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-contact-matrix">7.2 Make contact matrix.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dump-all-chromosomes">Dump all chromosomes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -271,7 +274,49 @@ usage: __main__.py basic [-h] [-o OUTNAME] [-c CONTROLMATRIX]
 <td>...</td>
 </tr>
 </tbody>
-</table></div>
+</table><div class="section" id="dump-all-chromosomes">
+<h3>Dump all chromosomes<a class="headerlink" href="#dump-all-chromosomes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code> , set chromosome to “all” will compute metrics for all chromosomes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, must be <code class="docutils literal notranslate"><span class="pre">.hic</span></code> data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-maxchr</span></code>, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>, Number of processors</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d basic dump ./testdata/Control/inter_30.hic <span class="m">50000</span> all <span class="se">\</span>
+	--gt ./hg38/genome_table --normalize KR -o justtest <span class="se">\</span>
+	--datatype rawhic --maxchr <span class="m">22</span> -n <span class="m">30</span>
+</pre></div>
+</div>
+<p>Output would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>justtest
+└── 50000
+    ├── observed.KR.chr1.matrix.gz
+    ├── observed.KR.chr10.matrix.gz
+    ├── observed.KR.chr11.matrix.gz
+    ├── observed.KR.chr12.matrix.gz
+    ├── observed.KR.chr13.matrix.gz
+    ├── observed.KR.chr14.matrix.gz
+    ├── observed.KR.chr15.matrix.gz
+    ├── observed.KR.chr16.matrix.gz
+    ├── observed.KR.chr17.matrix.gz
+    ├── observed.KR.chr18.matrix.gz
+    ├── observed.KR.chr19.matrix.gz
+    ├── observed.KR.chr2.matrix.gz
+    ├── observed.KR.chr20.matrix.gz
+    ├── observed.KR.chr21.matrix.gz
+    ├── observed.KR.chr22.matrix.gz
+    ├── observed.KR.chr3.matrix.gz
+    ├── observed.KR.chr4.matrix.gz
+    ├── observed.KR.chr5.matrix.gz
+    ├── observed.KR.chr6.matrix.gz
+    ├── observed.KR.chr7.matrix.gz
+    ├── observed.KR.chr8.matrix.gz
+    ├── observed.KR.chr9.matrix.gz
+    └── observed.KR.chrX.matrix.gz
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -280,7 +325,7 @@ usage: __main__.py basic [-h] [-o OUTNAME] [-c CONTROLMATRIX]
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="call.html" class="btn btn-neutral float-left" title="6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multitype.html" class="btn btn-neutral float-left" title="6. Obtain various types of 1D metrics for the same sample" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

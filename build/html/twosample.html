@@ -310,7 +310,7 @@ optional arguments:
 <li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code> , set chromosome to “all” will compute metrics for all chromosomes.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, if calculating for all chromosomes, the input file should be absolute folder of contact matrix.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-maxchr</span></code>, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--prefix</span></code>, the prefix of matrix file, please modify the name of zipped matrix to <code class="docutils literal notranslate"><span class="pre">${prefix}chr1.matrix.gz</span></code>. If you used our dump function, the file should be:</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">--prefix</span></code>, the prefix of matrix file, please modify the name of zipped matrix to <code class="docutils literal notranslate"><span class="pre">${prefix}chr1.matrix.gz</span></code>. If you used our <a class="reference external" href="https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes">dump function</a>, the file should be:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── observed.KR.chr1.matrix.gz
 ├── observed.KR.chr10.matrix.gz
 ├── observed.KR.chr11.matrix.gz
@@ -323,12 +323,12 @@ optional arguments:
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>, Number of processors</p></li>
 </ul>
-<p>To run all chromosomes parallel, do:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test/Control/  <span class="m">50000</span> all 
-	--maxchr <span class="m">22</span> --prefix observed.KR. -n <span class="m">30</span> -o control
+<p>To run all chromosomes parallel (treat vs control), do:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one ISC ./test/Treat/ ./test/Control/  <span class="m">50000</span> all 
+	--maxchr <span class="m">22</span> --prefix observed.KR. -n <span class="m">30</span> -o treat_vs_control
 </pre></div>
 </div>
-<p>Output would be <code class="docutils literal notranslate"><span class="pre">control_IS_allchr.csv</span></code>.</p>
+<p>Output would be <code class="docutils literal notranslate"><span class="pre">treat_vs_control_IS_allchr.csv</span></code>.</p>
 </div>
 </div>
 <div class="section" id="visualize-1d-metrics-two-sample">

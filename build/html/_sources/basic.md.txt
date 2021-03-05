@@ -77,3 +77,47 @@ which is dense matrix (zipped) of intra-chromosomal contacts, like:
 |  ...  | ...  |  ...  |  ...  |  ...  | ...  |
 
  
+
+### Dump all chromosomes
+
+- `chromosome` , set chromosome to "all" will compute metrics for all chromosomes.
+- `data`, must be `.hic` data
+- `-maxchr`, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.
+- `-n`, Number of processors
+
+``` shell
+h1d basic dump ./testdata/Control/inter_30.hic 50000 all \
+	--gt ./hg38/genome_table --normalize KR -o justtest \
+	--datatype rawhic --maxchr 22 -n 30
+```
+
+Output would be:
+
+```
+justtest
+└── 50000
+    ├── observed.KR.chr1.matrix.gz
+    ├── observed.KR.chr10.matrix.gz
+    ├── observed.KR.chr11.matrix.gz
+    ├── observed.KR.chr12.matrix.gz
+    ├── observed.KR.chr13.matrix.gz
+    ├── observed.KR.chr14.matrix.gz
+    ├── observed.KR.chr15.matrix.gz
+    ├── observed.KR.chr16.matrix.gz
+    ├── observed.KR.chr17.matrix.gz
+    ├── observed.KR.chr18.matrix.gz
+    ├── observed.KR.chr19.matrix.gz
+    ├── observed.KR.chr2.matrix.gz
+    ├── observed.KR.chr20.matrix.gz
+    ├── observed.KR.chr21.matrix.gz
+    ├── observed.KR.chr22.matrix.gz
+    ├── observed.KR.chr3.matrix.gz
+    ├── observed.KR.chr4.matrix.gz
+    ├── observed.KR.chr5.matrix.gz
+    ├── observed.KR.chr6.matrix.gz
+    ├── observed.KR.chr7.matrix.gz
+    ├── observed.KR.chr8.matrix.gz
+    ├── observed.KR.chr9.matrix.gz
+    └── observed.KR.chrX.matrix.gz
+```
+

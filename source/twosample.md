@@ -104,7 +104,7 @@ optional arguments:
 
 - `-maxchr`, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.
 
-- `--prefix`, the prefix of matrix file, please modify the name of zipped matrix to `${prefix}chr1.matrix.gz`. If you used our dump function, the file should be:
+- `--prefix`, the prefix of matrix file, please modify the name of zipped matrix to `${prefix}chr1.matrix.gz`. If you used our [dump function](https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes), the file should be:
 
   ```
   ├── observed.KR.chr1.matrix.gz

@@ -26,10 +26,11 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
                         type data resolution chromosome
 ```
 
-- **Required parameters**:
+### Required parameters:
 
-  - `type`, type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}, as [described](https://h1d.readthedocs.io/en/latest/onesample.html#usage)
-  - `data`, a tsv (Tab-separated) file contain name and paths for all samples, for example:
+- `type`, type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}, as [described](https://h1d.readthedocs.io/en/latest/onesample.html#usage)
+
+- `data`, a tsv (Tab-separated) file contain name and paths for all samples (below). Used file could be contact matrix or raw `.hic` as introduced [here](https://h1d.readthedocs.io/en/latest/overview.html#input-format) 
 
   | Control1 | ./testdata/Control1/observed.KR.chr21.matrix.gz |
   | -------- | ----------------------------------------------- |
@@ -39,19 +40,17 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
   | Treat3   | ./testdata/Treat3/observed.KR.chr21.matrix.gz   |
   | Treat4   | ./testdata/Treat4/observed.KR.chr21.matrix.gz   |
 
-  ​	Used file could be contact matrix or raw `.hic` as introduced [here](https://h1d.readthedocs.io/en/latest/overview.html#input-format) 
+- `resolution`, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing `.hic` file.
+- `chromosome`, selected chromosome to be analyzed.
 
-  - `resolution`, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing `.hic` file.
-  - `chromosome`, selected chromosome to be analyzed.
+### Optional parameters:
 
-- Optional parameters:
+- `--datatype`, type of input data: "matrix" (default) or "rawhic".
+- `-p`, parameters  for [one-sample](https://h1d.readthedocs.io/en/latest/onesample.html#usage)  metrics.
+- `-o`,  output name, default: multisamples_metrics
+- `--gt`, [genome table file](https://h1d.readthedocs.io/en/latest/overview.html#input-format) when using raw .hic data.
 
-  - `--datatype`, type of input data: "matrix" (default) or "rawhic".
-  - `-p`, parameters  for [one-sample](https://h1d.readthedocs.io/en/latest/onesample.html#usage)  metrics.
-  - `-o`,  output name, default: multisamples_metrics
-  - `--gt`, [genome table file](https://h1d.readthedocs.io/en/latest/overview.html#input-format) when using raw .hic data.
 
-  
 
 ## 5.3 Visualization
 
