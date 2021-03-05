@@ -97,6 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#dump-all-chromosomes">Dump all chromosomes</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#make-gene-density-file-for-pc1">7.3 Make gene density file for PC1</a></li>
 </ul>
 </li>
 </ul>
@@ -316,6 +317,77 @@ usage: __main__.py basic [-h] [-o OUTNAME] [-c CONTROLMATRIX]
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="make-gene-density-file-for-pc1">
+<h2>7.3 Make gene density file for PC1<a class="headerlink" href="#make-gene-density-file-for-pc1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d basic gd refFlat.txt <span class="m">50000</span> <span class="se">\</span>
+		./hg38/genome_table -o hg38.geneDensity.txt
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">refFlat.txt</span></code> is defined by <a class="reference external" href="http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&amp;hgta_doSchemaDb=bosTau4&amp;hgta_doSchemaTable=refFlat">UCSC</a> and should be at least 6 columns as (without 1st row):</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>geneName</strong></th>
+<th>name</th>
+<th>chrom</th>
+<th>strand</th>
+<th>txStart</th>
+<th>txEnd</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RCAN1</td>
+<td>NM_001034679</td>
+<td>chr1</td>
+<td>+</td>
+<td>327876</td>
+<td>339078</td>
+</tr>
+<tr>
+<td>KCNE1</td>
+<td>NM_001077977</td>
+<td>chr1</td>
+<td>+</td>
+<td>377375</td>
+<td>383871</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>..</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">50000</span></code> is the resolution for PC1 analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./hg38/genome_table</span></code> is genome table file (tab-separated)  which described the length of each chromosome for your genome reference:</p></li>
+</ul>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>chr1</th>
+<th>248956422</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr2</td>
+<td>242193529</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code> is the output name</p></li>
+</ul>
 </div>
 </div>
 

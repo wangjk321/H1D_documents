@@ -121,3 +121,28 @@ justtest
     └── observed.KR.chrX.matrix.gz
 ```
 
+## 7.3 Make gene density file for PC1
+
+```shell
+h1d basic gd refFlat.txt 50000 \
+		./hg38/genome_table -o hg38.geneDensity.txt
+```
+
+- `refFlat.txt` is defined by [UCSC](http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&hgta_doSchemaDb=bosTau4&hgta_doSchemaTable=refFlat) and should be at least 6 columns as (without 1st row):
+
+  | **geneName** | name         | chrom | strand | txStart | txEnd  |
+  | ------------ | ------------ | ----- | ------ | ------- | ------ |
+  | RCAN1        | NM_001034679 | chr1  | +      | 327876  | 339078 |
+  | KCNE1        | NM_001077977 | chr1  | +      | 377375  | 383871 |
+  | ...          | ...          | ..    | ...    | ...     | ...    |
+
+- `50000` is the resolution for PC1 analysis.
+
+- `./hg38/genome_table` is genome table file (tab-separated)  which described the length of each chromosome for your genome reference:
+
+  | chr1 | 248956422 |
+  | ---- | --------- |
+  | chr2 | 242193529 |
+  | ...  | ...       |
+
+- `-o` is the output name 
