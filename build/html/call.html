@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>6. Extract secondary information from metrics (dTAD, stripeTAD, etc.) &mdash; HiC1Dmetrics 0.0.1 documentation</title>
+  <title>4. Extract secondary information from metrics (dTAD, stripeTAD, etc.) &mdash; HiC1Dmetrics 0.0.1 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="7. Provide basic functions to visualize and handle Hi-C data" href="basic.html" />
-    <link rel="prev" title="5. Obtain the same metrics for muliple samples" href="multisample.html" /> 
+    <link rel="next" title="5. Obtain the same metrics for muliple samples" href="multisample.html" />
+    <link rel="prev" title="3. Calculate 1D metrics for comparison of two samples" href="twosample.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,17 +89,17 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">1. Overview and Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="onesample.html">2. Calculate 1D metrics for one sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#quick-start">6.1 Quick start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#parameters">6.2 Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dtad">6.3 dTAD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stripe-tad">6.4 stripe-TAD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hubs">6.5 Hubs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tad">6.6 TAD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start">4.1 Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">4.2 Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dtad">4.3 dTAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stripe-tad">4.4 stripe-TAD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hubs">4.5 Hubs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tad">4.6 TAD</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">6. Obtain various types of 1D metrics for the same sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
@@ -149,7 +149,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</li>
+      <li>4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -169,9 +169,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="extract-secondary-information-from-metrics-dtad-stripetad-etc">
-<h1>6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)<a class="headerlink" href="#extract-secondary-information-from-metrics-dtad-stripetad-etc" title="Permalink to this headline">¶</a></h1>
+<h1>4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)<a class="headerlink" href="#extract-secondary-information-from-metrics-dtad-stripetad-etc" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="quick-start">
-<h2>6.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<h2>4.1 Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call stripe ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
 	<span class="m">50000</span> chr21 -o testname
 </pre></div>
@@ -179,7 +179,7 @@
 <p>The output will be: <code class="docutils literal notranslate"><span class="pre">testname_stripe.csv</span></code></p>
 </div>
 <div class="section" id="parameters">
-<h2>6.2 Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<h2>4.2 Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1d</span> <span class="n">call</span> <span class="o">-</span><span class="n">h</span>
 <span class="n">usage</span><span class="p">:</span> <span class="n">__main__</span><span class="o">.</span><span class="n">py</span> <span class="n">call</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTNAME</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">c</span> <span class="n">CONTROLMATRIX</span><span class="p">]</span>
                         <span class="p">[</span><span class="o">--</span><span class="n">datatype</span> <span class="n">DATATYPE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">gt</span> <span class="n">GT</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">PARAMETER</span><span class="p">]</span>
@@ -237,7 +237,7 @@
 </tbody>
 </table></div>
 <div class="section" id="dtad">
-<h2>6.3 dTAD<a class="headerlink" href="#dtad" title="Permalink to this headline">¶</a></h2>
+<h2>4.3 dTAD<a class="headerlink" href="#dtad" title="Permalink to this headline">¶</a></h2>
 <p>h1d provide the function to call dTAD as</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call dTAD ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="se">\</span>
 	<span class="m">50000</span> chr21 -c ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
@@ -272,7 +272,7 @@
 </tbody>
 </table></div>
 <div class="section" id="stripe-tad">
-<h2>6.4 stripe-TAD<a class="headerlink" href="#stripe-tad" title="Permalink to this headline">¶</a></h2>
+<h2>4.4 stripe-TAD<a class="headerlink" href="#stripe-tad" title="Permalink to this headline">¶</a></h2>
 <p>This function simply divide all TAD into “loop”, “left-stripe”, “right-stripe” and “other” TAD:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="m">50000</span> chr21 <span class="se">\</span>
 	--datatype matrix -o testname -p <span class="m">300000</span>
@@ -316,7 +316,7 @@
 </tbody>
 </table></div>
 <div class="section" id="hubs">
-<h2>6.5 Hubs<a class="headerlink" href="#hubs" title="Permalink to this headline">¶</a></h2>
+<h2>4.5 Hubs<a class="headerlink" href="#hubs" title="Permalink to this headline">¶</a></h2>
 <p>This function extract chromatin Hubs as described in <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/26272203/">PMID: 26272203</a></p>
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"> Comutation of hubs requires rawhic input </div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call hubs ./test_data/inter_30.hic <span class="m">50000</span> chr21 <span class="se">\</span>
 	--datatype rawhic --gt ./hg19/genome_table -o testname -p <span class="m">0</span>.05
@@ -345,7 +345,7 @@
 </tbody>
 </table></div>
 <div class="section" id="tad">
-<h2>6.6 TAD<a class="headerlink" href="#tad" title="Permalink to this headline">¶</a></h2>
+<h2>4.6 TAD<a class="headerlink" href="#tad" title="Permalink to this headline">¶</a></h2>
 <p>This function will use Insulation Score to simply call TAD:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d call TAD ./test_data/Treat/observed.KR.chr21.matrix.gz <span class="m">50000</span> chr21 <span class="se">\</span>
 	--datatype matrix -o testname -p <span class="m">300000</span>
@@ -360,8 +360,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="basic.html" class="btn btn-neutral float-right" title="7. Provide basic functions to visualize and handle Hi-C data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="multisample.html" class="btn btn-neutral float-left" title="5. Obtain the same metrics for muliple samples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multisample.html" class="btn btn-neutral float-right" title="5. Obtain the same metrics for muliple samples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="twosample.html" class="btn btn-neutral float-left" title="3. Calculate 1D metrics for comparison of two samples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

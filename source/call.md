@@ -1,6 +1,6 @@
-# 6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)
+# 4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)
 
-## 6.1 Quick start
+## 4.1 Quick start
 
 ```shell
 h1d call stripe ./test_data/Control/observed.KR.chr21.matrix.gz \
@@ -9,7 +9,7 @@ h1d call stripe ./test_data/Control/observed.KR.chr21.matrix.gz \
 
 The output will be: `testname_stripe.csv`
 
-## 6.2 Parameters
+## 4.2 Parameters
 
 ```
 h1d call -h
@@ -43,7 +43,7 @@ usage: __main__.py call [-h] [-o OUTNAME] [-c CONTROLMATRIX]
 
 
 
-## 6.3 dTAD
+## 4.3 dTAD
 
 h1d provide the function to call dTAD as 
 
@@ -61,7 +61,7 @@ The output will be `testname_leftdTAD.csv` and `testname_rightdTAD.csv`, as:
 | chr21 | 26800000 | 27700000 |
 | ...   | ...      | ...      |
 
-## 6.4 stripe-TAD
+## 4.4 stripe-TAD
 
 This function simply divide all TAD into "loop", "left-stripe", "right-stripe" and "other" TAD:
 
@@ -79,7 +79,7 @@ The output will be `testname_stripe.csv`, as:
 | chr21 | 15600000 | 16850000 | otherTAD   |
 | ...   | ...      | ...      | ...        |
 
-## 6.5 Hubs
+## 4.5 Hubs
 
 This function extract chromatin Hubs as described in [PMID: 26272203](https://pubmed.ncbi.nlm.nih.gov/26272203/)
 
@@ -97,7 +97,7 @@ The output will be `testname_hubs.csv` in `.bed` style, as :
 | chr21 | 15850000 | 16000000 |
 | ...   | ...      | ...      |
 
-## 6.6 TAD
+## 4.6 TAD
 
 This function will use Insulation Score to simply call TAD:
 

@@ -93,7 +93,42 @@ optional arguments:
   	-p 300000 -o treat_vs_control_ISC
   ```
 
-  
+
+
+
+### 3.3.1 Multiprocessing for all chromomes:
+
+- `chromosome` , set chromosome to "all" will compute metrics for all chromosomes.
+
+- `data`, if calculating for all chromosomes, the input file should be absolute folder of contact matrix.
+
+- `-maxchr`, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.
+
+- `--prefix`, the prefix of matrix file, please modify the name of zipped matrix to `${prefix}chr1.matrix.gz`. If you used our dump function, the file should be:
+
+  ```
+  ├── observed.KR.chr1.matrix.gz
+  ├── observed.KR.chr10.matrix.gz
+  ├── observed.KR.chr11.matrix.gz
+  ├── observed.KR.chr12.matrix.gz
+  ├── observed.KR.chr13.matrix.gz
+  ├── observed.KR.chr14.matrix.gz
+  ```
+
+  so the prefix is `observed.KR.`
+
+- `-n`, Number of processors
+
+To run all chromosomes parallel, do:
+
+```shell
+h1d one IS ./test/Control/  50000 all 
+	--maxchr 22 --prefix observed.KR. -n 30 -o control
+```
+
+Output would be `control_IS_allchr.csv`.
+
+
 
 ## 3.4 Visualize 1D metrics (two-sample)
 

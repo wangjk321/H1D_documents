@@ -92,7 +92,8 @@
 <li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">7. Provide basic functions to visualize and handle Hi-C data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#under-construction">7.1 under construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot-indicated-region">7.1 Plot indicated region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-contact-matrix">7.2 Make contact matrix.</a></li>
 </ul>
 </li>
 </ul>
@@ -164,9 +165,113 @@
             
   <div class="section" id="provide-basic-functions-to-visualize-and-handle-hi-c-data">
 <h1>7. Provide basic functions to visualize and handle Hi-C data<a class="headerlink" href="#provide-basic-functions-to-visualize-and-handle-hi-c-data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-construction">
-<h2>7.1 under construction<a class="headerlink" href="#under-construction" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ h1d basic
+usage: __main__.py basic [-h] [-o OUTNAME] [-c CONTROLMATRIX]
+                         [--datatype DATATYPE] [--gt GT] [--plottype PLOTTYPE]
+                         [-s START] [-e END] [--normalize NORMALIZE]
+                         mode data resolution chromosome
+</pre></div>
 </div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>, Running mode,,should be one of {plot,dump}</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, Path of matrix file or raw .hic file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing <code class="docutils literal notranslate"><span class="pre">.hic</span></code> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code>, selected chromosome to be analyzed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--datatype</span></code>, type of input data: “matrix” (default) or “rawhic”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--gt</span></code>, <a class="reference external" href="https://h1d.readthedocs.io/en/latest/overview.html#input-format">genome table file</a> when using raw .hic data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>,  output name, default: unname</p></li>
+</ul>
+<div class="section" id="plot-indicated-region">
+<h2>7.1 Plot indicated region<a class="headerlink" href="#plot-indicated-region" title="Permalink to this headline">¶</a></h2>
+<p>This function provide basic visualization for Hi-C data.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--plottype</span></code>, Type of plot, could be one of {tri,square,tad}</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code>, start site for plot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>, end site for plot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>, File of control sample. If provided, it will plot differential matrix of treat_vs_control.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d basic plot ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 --datatype matrix -o testplot --plottype square <span class="se">\</span>
+	-s <span class="m">27500000</span> -e <span class="m">32500000</span>
+</pre></div>
+</div>
+<img src="_static/7-1.png" alt="RTDimport" style="zoom:20%;" /><p>If use <code class="docutils literal notranslate"><span class="pre">--plottype</span> <span class="pre">tri</span></code>:</p>
+<img src="_static/7-2.png" alt="RTDimport" style="zoom:20%;" /><p>Differential matrix is plotted when the control data is provided:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d basic plot ./test_data/Control/observed.KR.chr21.matrix.gz <span class="se">\</span>
+	<span class="m">50000</span> chr21 --datatype matrix -o testplot --plottype square <span class="se">\</span>
+	-s <span class="m">27500000</span> -e <span class="m">32500000</span>
+</pre></div>
+</div>
+<img src="_static/7-3.png" alt="RTDimport" style="zoom:20%;" /></div>
+<div class="section" id="make-contact-matrix">
+<h2>7.2 Make contact matrix.<a class="headerlink" href="#make-contact-matrix" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">--normalize</span></code>, Normalize methods {NONE/VC/VC_SQRT/KR}</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h1d</span> <span class="n">basic</span> <span class="n">dump</span> <span class="o">~/</span><span class="n">testdata</span><span class="o">/</span><span class="n">Control</span><span class="o">/</span><span class="n">inter_30</span><span class="o">.</span><span class="n">hic</span> <span class="mi">50000</span> <span class="n">chr21</span> \
+	<span class="o">--</span><span class="n">datatype</span> <span class="n">rawhic</span> <span class="o">-</span><span class="n">o</span> <span class="n">testdump</span> <span class="o">--</span><span class="n">gt</span> <span class="o">./</span><span class="n">h1d</span><span class="o">/</span><span class="n">gd</span><span class="o">/</span><span class="n">hg19</span><span class="o">/</span><span class="n">genome_table</span>
+	<span class="o">--</span><span class="n">normalize</span> <span class="n">KR</span>
+</pre></div>
+</div>
+<p>The output will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>testdump
+└── 50000
+    └── observed.KR.chr21.matrix.gz
+</pre></div>
+</div>
+<p>which is dense matrix (zipped) of intra-chromosomal contacts, like:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">0</th>
+<th align="center">25000</th>
+<th align="center">50000</th>
+<th align="center">75000</th>
+<th>...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td>...</td>
+</tr>
+<tr>
+<td align="center">25000</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">3</td>
+<td align="center">5</td>
+<td>...</td>
+</tr>
+<tr>
+<td align="center">50000</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">8</td>
+<td align="center">4</td>
+<td>...</td>
+</tr>
+<tr>
+<td align="center">75000</td>
+<td align="center">0</td>
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">0</td>
+<td>...</td>
+</tr>
+<tr>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td align="center">...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 
 

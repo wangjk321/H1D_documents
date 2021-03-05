@@ -1,6 +1,6 @@
-# 4. Obtain various types of 1D metrics for the same sample
+# 6. Obtain various types of 1D metrics for the same sample
 
-## 4.1 Calculation
+## 6.1 Calculation
 
 ``` shell
 h1d multitypes IS,CI,DI \
@@ -18,7 +18,7 @@ This will output a csv file `multi_types_metric.csv` like：
 | chr21 | 23950000 | 24000000 | 0.636362        | 0.678699      | -3.448456           |
 | ...   | ...      | ...      | ...             | ...           | ...                 |
 
-## 4.2 Parameters
+## 6.2 Parameters
 
 ``` 
 $ h1d multitypes
@@ -42,7 +42,7 @@ usage: h1d multitypes [-h] -p PARAMETER [-c CONTROLMATRIX]
   -  `--datatype`, type of input data: "matrix" (default) or "rawhic".
   - `--gt`, [genome table file](https://h1d.readthedocs.io/en/latest/overview.html#input-format) when using raw .hic data.
 
-## 4.3 Visuliazation
+## 6.3 Visuliazation
 
 `-d`, decide whether to plot.
 

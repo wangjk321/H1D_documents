@@ -90,14 +90,17 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Calculate 1D metrics for one sample</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">2.1 Quick start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">2.2 Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics-one-sample">2.3 Calculate 1D metrics (one-sample)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-1d-metrics-one-sample">2.3 Calculate 1D metrics (one-sample)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multiprocessing-for-all-chromomes">2.3.1 Multiprocessing for all chromomes:</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#visulize-1d-metrics-one-sample">2.4 Visulize 1D metrics (one-sample)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="twosample.html">3. Calculate 1D metrics for comparison of two samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multitype.html">4. Obtain various types of 1D metrics for the same sample</a></li>
+<li class="toctree-l1"><a class="reference internal" href="call.html">4. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="multisample.html">5. Obtain the same metrics for muliple samples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="call.html">6. Extract secondary information from metrics (dTAD, stripeTAD, etc.)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multitype.html">6. Obtain various types of 1D metrics for the same sample</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic.html">7. Provide basic functions to visualize and handle Hi-C data</a></li>
 </ul>
 
@@ -205,6 +208,7 @@
 </tr>
 </tbody>
 </table></div>
+<hr class="docutils" />
 <div class="section" id="usage">
 <h2>2.2 Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>The analysis of one-sample metrics cound be run by <code class="docutils literal notranslate"><span class="pre">h1d</span> <span class="pre">one</span></code> sub-command :</p>
@@ -328,7 +332,33 @@ optional arguments:
 </ul>
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;">
 Calculation of IF only support rawhic datatype
-</div><p>Output will be <code class="docutils literal notranslate"><span class="pre">control_CI_chr21.bedGraph</span></code> as described before.</p>
+</div>
+Output will be `control_CI_chr21.bedGraph` as described before. <div class="section" id="multiprocessing-for-all-chromomes">
+<h3>2.3.1 Multiprocessing for all chromomes:<a class="headerlink" href="#multiprocessing-for-all-chromomes" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">chromosome</span></code> , set chromosome to “all” will compute metrics for all chromosomes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>, if calculating for all chromosomes, the input file should be absolute folder of contact matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-maxchr</span></code>, Maximum index of chromosome (human genome is 22,i.e.). It will compute chromosome 1~maxchr plus chromosome X.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--prefix</span></code>, the prefix of matrix file, please modify the name of zipped matrix to <code class="docutils literal notranslate"><span class="pre">${prefix}chr1.matrix.gz</span></code>. If you used our dump function, the file should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── observed.KR.chr1.matrix.gz
+├── observed.KR.chr10.matrix.gz
+├── observed.KR.chr11.matrix.gz
+├── observed.KR.chr12.matrix.gz
+├── observed.KR.chr13.matrix.gz
+├── observed.KR.chr14.matrix.gz
+</pre></div>
+</div>
+<p>so the prefix is <code class="docutils literal notranslate"><span class="pre">observed.KR.</span></code></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code>, Number of processors</p></li>
+</ul>
+<p>To run all chromosomes parallel, do:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>h1d one IS ./test/Control/ <span class="m">50000</span> all 
+	--maxchr <span class="m">22</span> --prefix observed.KR. -n <span class="m">30</span> -o control
+</pre></div>
+</div>
+<p>Output would be <code class="docutils literal notranslate"><span class="pre">control_IS_allchr.csv</span></code>.</p>
+</div>
 </div>
 <div class="section" id="visulize-1d-metrics-one-sample">
 <h2>2.4 Visulize 1D metrics (one-sample)<a class="headerlink" href="#visulize-1d-metrics-one-sample" title="Permalink to this headline">¶</a></h2>
