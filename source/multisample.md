@@ -86,3 +86,14 @@ h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
 ```
 
 <img src="_static/5-3-3.png" alt="RTDimport" style="zoom:50%;" />
+
+### 5.3.4 Discrete heatmap
+
+Some metrics such as PC1, can not be quantitatively compared, thus we convert it to discrete value to draw a heatmap:
+
+```shell
+h1d multisamples PC1 test2.txt 50000 chr19 -o multisamples_metrics \
+	--discrete -s 22500000 -e 32500000 -p mm10_geneDensity50000.txt
+```
+
+<img src="_static/5-3-4.png" alt="RTDimport" style="zoom:50%;" />
