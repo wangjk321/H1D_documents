@@ -66,17 +66,17 @@ optional arguments:
 
 - `-p, --parameter` for each 1D metric is :
 
-  | Type | Description       | default value                                                |
-  | ---- | ----------------- | ------------------------------------------------------------ |
-  | DI   | length of         | 1000000                                                      |
-  | IS   | square size       | 300000                                                       |
-  | CI   |                   | 300000                                                       |
-  | SS   |                   | 300000                                                       |
-  | DLR  |                   |                                                              |
-  | PC1  | gene density file | None (The sign of eigenvector is arbitrary unless specify a geneDensity file) |
-  | IAS  |                   |                                                              |
-  | IES  |                   |                                                              |
-  | IF   |                   |                                                              |
+  | Type | Description              | default value |
+  | ---- | ------------------------ | ------------- |
+  | DI   | length of bins           | 1000000       |
+  | IS   | square size              | 300000        |
+  | CI   | length of bins           | 300000        |
+  | SS   | length of bins           | 300000        |
+  | DLR  | Local distance           | 3000000       |
+  | PC1  | Gene density file        | None          |
+  | IAS  | Paramter for TAD calling | 300000        |
+  | IES  | Paramter for TAD calling | 300000        |
+  | IF   | FDR threshold            | 0.05          |
 
   
 

@@ -60,17 +60,17 @@ optional arguments:
 
 - `-p ` or `--parameter` for each metrics:
 
-  | Type     | Description                               | default value  |
-  | -------- | ----------------------------------------- | -------------- |
-  | ISC      | length of                                 | 300000         |
-  | CIC      | square size                               | 300000         |
-  | SSC      |                                           | 300000         |
-  | deltaDLR |                                           | 3000000        |
-  | CD       | Correlation method                        | pearson        |
-  | IASC     |                                           | 300000         |
-  | IESC     |                                           | 300000         |
-  | IFC      | FDR threshold for signficant interactions | 0.05           |
-  | DRF      |                                           | 200000-5000000 |
+  | Type     | Description              | default value  |
+  | -------- | ------------------------ | -------------- |
+  | ISC      | square size              | 300000         |
+  | CIC      | length of bins           | 300000         |
+  | SSC      | length of bins           | 300000         |
+  | deltaDLR | Local distance           | 3000000        |
+  | CD       | Correlation method       | pearson        |
+  | IASC     | Paramter for TAD calling | 300000         |
+  | IESC     | Paramter for TAD calling | 300000         |
+  | IFC      | FDR threshold            | 0.05           |
+  | DRF      | length of bins           | 200000-5000000 |
 
   
 
