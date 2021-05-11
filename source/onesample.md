@@ -66,19 +66,19 @@ optional arguments:
 
 - `-p, --parameter` for each 1D metric is :
 
-  | Type | Description              | default value |
-  | ---- | ------------------------ | ------------- |
-  | DI   | length of bins           | 1000000       |
-  | IS   | square size              | 300000        |
-  | CI   | length of bins           | 300000        |
-  | SS   | length of bins           | 300000        |
-  | DLR  | Local distance           | 3000000       |
-  | PC1  | Gene density file        | None          |
-  | IAS  | Paramter for TAD calling | 300000        |
-  | IES  | Paramter for TAD calling | 300000        |
-  | IF   | FDR threshold            | 0.05          |
+  | Type | Description                                                  | default value |
+  | ---- | ------------------------------------------------------------ | ------------- |
+  | DI   | length of bins                                               | 1000000       |
+  | IS   | square size                                                  | 300000        |
+  | CI   | length of bins                                               | 300000        |
+  | SS   | length of bins                                               | 300000        |
+  | DLR  | Local distance                                               | 3000000       |
+  | PC1  | [Gene density file](https://h1d.readthedocs.io/en/latest/basic.html#make-gene-density-file-for-pc1) | None          |
+  | IAS  | Paramter for TAD calling                                     | 300000        |
+  | IES  | Paramter for TAD calling                                     | 300000        |
+  | IF   | FDR threshold                                                | 0.05          |
 
-  
+  Note !! : The sign of PC1 value is arbitrary unless provide a geneDensity file.
 
 ## 2.3 Calculate 1D metrics (one-sample)
 
