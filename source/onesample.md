@@ -23,16 +23,17 @@ The analysis of one-sample metrics cound be run by `h1d one` sub-command :
 
 ```
 $ h1d one -h # type -h for help
-usage: __main__.py one [-h] [-p PARAMETER] [-o OUTNAME] [-d] [--start START]
-                       [--end END] [--datatype DATATYPE] [--gt GT] [--allchr]
-                       type matrix resolution chromosome
+usage: h1d one [-h] [-p PARAMETER] [-o OUTNAME] [-d] [-s START] [-e END]
+               [--datatype DATATYPE] [--gt GT] [--prefix PREFIX]
+               [--maxchr MAXCHR] [-n NPROCESSER] [-t TADFILE]
+               type data resolution chromosome
 
 1D metrics designed for one Hi-C sample.
 
 positional arguments:
   type                  Type of 1D metrics,,should be one of
                         {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}.
-  matrix                Path of matrix or rawhic file.
+  data                  Path of matrix or rawhic file.
   resolution            Resolution of input matrix.
   chromosome            Chromosome number.
 
@@ -43,11 +44,18 @@ optional arguments:
   -o OUTNAME, --outname OUTNAME
                         output name (default: 'metrics').
   -d, --draw            Plot figure for candidate region.
-  --start START         Start sites for plotting.
-  --end END             End sites for plotting.
+  -s START, --start START
+                        Start sites for plotting.
+  -e END, --end END     End sites for plotting.
   --datatype DATATYPE   Type of input data: matrix(default) or rawhic.
   --gt GT               genome_table file.
-  --allchr              Calculate metrics for multiple chromosomes.
+  --prefix PREFIX       ${prefix}chr1.matrix.gz
+  --maxchr MAXCHR       Maximum index of chromosome (human genome is 22,i.e.)
+  -n NPROCESSER, --nProcesser NPROCESSER
+                        Number of processors
+  -t TADFILE, --TADfile TADFILE
+                        Give a TAD file, instead of using building-in TAD
+                        calling method
 ```
 
 - `type` : type of 1D metrics could be one of {IS,CI,DI,SS,DLR,PC1,IES,IAS,IF}:
@@ -79,6 +87,8 @@ optional arguments:
   | IF   | FDR threshold                                                | 0.05          |
 
   Note !! : The sign of PC1 value is arbitrary unless provide a geneDensity file.
+  
+- `-t TADFILE`, specify a TAD file (.bed format) to replace the built-in TAD calling method.
 
 ## 2.3 Calculate 1D metrics (one-sample)
 
