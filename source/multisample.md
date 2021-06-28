@@ -100,7 +100,7 @@ h1d multisamples PC1 test2.txt 50000 chr19 -o multisamples_metrics \
 
 
 
-### 5.3.4 Statistically comparison of suitable 1D metrics
+### 5.3.4 Statistically comparison
 
 As we mentioned in the manuscript, most of (except PC1 and DI) 1D metrics could be quantitatively compared. Considering most of them exhibited the unimodal distribution without obvious skew, we use ANOVA-like test to statistically compare multiple Hi-C samples. Each bin and its surrounding bins (default=2) are considered to to run such test. The obtained p-values is then adjusted via Benjamini/Hochberg method, to get the qvalue. 
 
