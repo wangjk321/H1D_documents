@@ -22,7 +22,7 @@ $ h1d multisamples
 usage: h1d multisamples [-h] [--datatype DATATYPE]
                         [--samplelist SAMPLELIST] [--labels LABELS]
                         [-p PARAMETER] [-o OUTNAME] [--gt GT] [--corr]
-                        [--heat] [--line] [-s START] [-e END]
+                        [--heat] [--line] [--anova] [--discrete] [-s START] [-e END]
                         type data resolution chromosome
 ```
 
@@ -97,3 +97,26 @@ h1d multisamples PC1 test2.txt 50000 chr19 -o multisamples_metrics \
 ```
 
 <img src="_static/5-3-4.png" alt="RTDimport" style="zoom:50%;" />
+
+
+
+### 5.3.4 Statistically comparison of suitable 1D metrics
+
+As we mentioned in the manuscript, most of (except PC1 and DI) 1D metrics could be quantitatively compared. Considering most of them exhibited the unimodal distribution without obvious skew, we use ANOVA-like test to statistically compare multiple Hi-C samples. Each bin and its surrounding bins (default=2) are considered to to run such test. The obtained p-values is then adjusted via Benjamini/Hochberg method, to get the qvalue. 
+
+To run this, please specify a genomic region and type:
+
+```shell
+python -m h1d multisamples IS test.txt 50000 chr21 -o ptest --anova -s 24500000 -e 34500000
+```
+
+, where the `test.txt` is described above. The out put will be:
+
+| chr   | start    | end      | pvalue                 | qvalue                |
+| ----- | -------- | -------- | ---------------------- | --------------------- |
+| ...   | ...      | ...      | ...                    | ...                   |
+| chr21 | 24650000 | 24700000 | 1.4207106516019808e-05 | 5.25394882479223e-05  |
+| chr21 | 24700000 | 24750000 | 0.000600635194484068   | 0.0014715562264859666 |
+| chr21 | 24750000 | 24800000 | 0.00011666149851486222 | 0.0003412784135658656 |
+| ...   | ...      | ...      | ...                    | ...                   |
+
