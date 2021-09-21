@@ -47,7 +47,8 @@ optional arguments:
   -s START, --start START
                         Start sites for plotting.
   -e END, --end END     End sites for plotting.
-  --datatype DATATYPE   Type of input data: matrix(default) or rawhic.
+  --datatype DATATYPE   Type of input data: [matrix(default),rawhic,cool]
+  --msi MSI             Method for significant interactions: [fithic2,hiccups]
   --gt GT               genome_table file.
   --prefix PREFIX       ${prefix}chr1.matrix.gz
   --maxchr MAXCHR       Maximum index of chromosome (human genome is 22,i.e.)
@@ -90,6 +91,8 @@ optional arguments:
   
 - `-t TADFILE`, specify a TAD file (.bed format) to replace the built-in TAD calling method.
 
+- `--msi`, specify the method to calculate significant interactions. 'fithic2' (default) or 'hiccups' is supported.
+
 ## 2.3 Calculate 1D metrics (one-sample)
 
 - Use contact matrix:
@@ -99,6 +102,13 @@ optional arguments:
   	50000 chr21 -p 300000 -o control_CI_chr21 --datatype matrix
   ```
 
+- Use raw `.cool` file
+
+  ``` shell
+  h1d one CI ./test_data/Control/test.50000.cool \
+  	50000 chr21 -p 300000 -o control_CI_chr21 --datatype cool
+  ```
+  
 - Use raw `.hic` file:
 
   ``` shell

@@ -37,6 +37,7 @@ HiC1Dmetrics is based on python3 and it requires:
   - seaborn
   - fithic==2.0.7
   - multiprocess
+  - cooler == 0.8.2
 - Others: 
   - bedtools >= 2.29.2
 
@@ -47,6 +48,8 @@ All required python packages will be automatically installed when use `pip insta
 HiC1Dmetrics support:
 
 - raw `.hic` defined by [juicer](https://github.com/aidenlab/juicer/wiki) software.
+
+- OR raw `cool` defined by cooler software
 
 - OR dense matrix (raw or zipped) of intra-chromosomal contacts, like:
 

@@ -20,7 +20,7 @@ usage: __main__.py call [-h] [-o OUTNAME] [-c CONTROLMATRIX]
 
 - Required parameters:
 
-  - `mode`, Running mode,,should be one of {dTAD,stripe,TAD,hubs}
+  - `mode`, Running mode,,should be one of {dTAD,stripe,stripeTAD, TAD,hubs}
 
   - `data`, Path of matrix file or raw .hic file.
   - `resolution`, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing `.hic` file.
@@ -34,12 +34,17 @@ usage: __main__.py call [-h] [-o OUTNAME] [-c CONTROLMATRIX]
   - `--gt`, [genome table file](https://h1d.readthedocs.io/en/latest/overview.html#input-format) when using raw .hic data.
   - `-p`, parameters  for particular mode:
 
-  | mode   | Which parameter | Default        |
-  | ------ | --------------- | -------------- |
-  | dTAD   | for DRF         | 200000-5000000 |
-  | stripe | for IAS         | 300000         |
-  | TAD    | for IS          | 300000         |
-  | Hubs   | for IF          | 0.05           |
+  | mode      | Which parameter       | Default        |
+  | --------- | --------------------- | -------------- |
+  | dTAD      | for DRF               | 200000-5000000 |
+  | stripe    | for 'strong IAS peak' | 0.02           |
+  | stripeTAD | for IAS               | 300000         |
+  | TAD       | for IS                | 300000         |
+  | Hubs      | for IF                | 0.05           |
+
+
+
+!! Please note that "stripe" is different from "stripeTAD": Stripe is the regions with "stripe" structure, whereas stripe-TAD is asymmetric TAD (may contain many stripes). Thus stripe-TAD is the classfication from all TAD.
 
 
 
@@ -61,12 +66,38 @@ The output will be `testname_leftdTAD.csv` and `testname_rightdTAD.csv`, as:
 | chr21 | 26800000 | 27700000 |
 | ...   | ...      | ...      |
 
-## 4.4 stripe-TAD
+
+
+## 4.4 stripe
+
+This function automatically identify all regions with stripe 'structure'. The key idea is to find the sharp, strong IAS peaks. We used the similar strategy which use insulation score to identify TAD boundaries. For the stripe calling, after extracting the local maximum positions of IAS, only positions with IAS > IASmean is retained. Then, similar to Crane et.al, Nature 2015, we calculate a delta vector of IAS for each bin to extract only strong IAS peaks. To avoid clustered small peaks, the IAS value of a ‘stripe’ position should be higher than any position around 100kb. 
+
+``` shell
+h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
+	--datatype matrix -o testname
+```
+
+This will output the summit of IAS signal, i.e. the stripes:
+
+chr	start	end	IntraTADscore
+chr21	15450000	15500000	2.333717
+chr21	15900000	15950000	2.561192
+chr21	16300000	16350000	1.892257
+chr21	17850000	17900000	2.053271
+chr21	18250000	18300000	1.918004
+chr21	25850000	25900000	2.762753
+chr21	26200000	26250000	2.148384
+chr21	26700000	26750000	2.94193
+chr21	26850000	26900000	4.215991
+
+
+
+## 4.5 stripe-TAD
 
 This function simply divide all TAD into "loop", "left-stripe", "right-stripe" and "other" TAD:
 
 ``` shell
-h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
+h1d call stripeTAD ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
 	--datatype matrix -o testname -p 300000
 ```
 
@@ -79,7 +110,7 @@ The output will be `testname_stripe.csv`, as:
 | chr21 | 15600000 | 16850000 | otherTAD   |
 | ...   | ...      | ...      | ...        |
 
-## 4.5 Hubs
+## 4.6 Hubs
 
 This function extract chromatin Hubs as described in [PMID: 26272203](https://pubmed.ncbi.nlm.nih.gov/26272203/)
 
@@ -97,7 +128,7 @@ The output will be `testname_hubs.csv` in `.bed` style, as :
 | chr21 | 15850000 | 16000000 |
 | ...   | ...      | ...      |
 
-## 4.6 TAD
+## 4.7 TAD
 
 This function will use Insulation Score to simply call TAD:
 
