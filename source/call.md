@@ -79,12 +79,12 @@ h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
 
 This will output the summit of IAS signal, i.e. the stripes:
 
-| chr   | start    | end      | IAS        |
-| ----- | -------- | -------- | ---------- |
-| chr21 | 15450000 | 15500000 | loopTAD    |
-| chr21 | 15900000 | 15950000 | leftStripe |
-| chr21 | 16300000 | 16350000 | otherTAD   |
-| ...   | ...      | ...      | ...        |
+| chr   | start    | end      | IAS      |
+| ----- | -------- | -------- | -------- |
+| chr21 | 15450000 | 15500000 | 2.333717 |
+| chr21 | 15900000 | 15950000 | 2.561192 |
+| chr21 | 16300000 | 16350000 | 1.892257 |
+| ...   | ...      | ...      | ...      |
 
 
 
