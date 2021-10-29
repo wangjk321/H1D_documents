@@ -3,7 +3,7 @@
 ## 4.1 Quick start
 
 ```shell
-h1d call stripe ./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d call stripe ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 -o testname
 ```
 
@@ -53,8 +53,8 @@ usage: __main__.py call [-h] [-o OUTNAME] [-c CONTROLMATRIX]
 h1d provide the function to call dTAD as 
 
 ```shell
-h1d call dTAD ./test_data/Treat/observed.KR.chr21.matrix.gz \
-	50000 chr21 -c ./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d call dTAD ./test_data/GSE104334_Rad21KD.chr21.matrix.gz \
+	50000 chr21 -c ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
   --datatype matrix -o testname -p 200000-5000000
 ```
 
@@ -73,7 +73,7 @@ The output will be `testname_leftdTAD.csv` and `testname_rightdTAD.csv`, as:
 This function automatically identify all regions with stripe 'structure'. The key idea is to find the sharp, strong IAS peaks. We used the similar strategy which use insulation score to identify TAD boundaries. For the stripe calling, after extracting the local maximum positions of IAS, only positions with IAS > IASmean is retained. Then, similar to Crane et.al, Nature 2015, we calculate a delta vector of IAS for each bin to extract only strong IAS peaks. To avoid clustered small peaks, the IAS value of a ‘stripe’ position should be higher than any position around 100kb. 
 
 ``` shell
-h1d call stripe ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
+h1d call stripe ./test_data/GSE104334_Ctrl.chr21.matrix.gz 50000 chr21 \
 	--datatype matrix -o testname
 ```
 
@@ -93,7 +93,7 @@ This will output the summit of IAS signal, i.e. the stripes:
 This function simply divide all TAD into "loop", "left-stripe", "right-stripe" and "other" TAD:
 
 ``` shell
-h1d call stripeTAD ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
+h1d call stripeTAD ./test_data/GSE104334_Ctrl.chr21.matrix.gz 50000 chr21 \
 	--datatype matrix -o testname -p 300000
 ```
 
@@ -113,8 +113,8 @@ This function extract chromatin Hubs as described in [PMID: 26272203](https://pu
 <div style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"> Comutation of hubs requires rawhic input </div>
 
 ```shell
-h1d call hubs ./test_data/inter_30.hic 50000 chr21 \
-	--datatype rawhic --gt ./hg19/genome_table -o testname -p 0.05
+h1d call hubs ./test_data/GSE104334_Ctrl.hic 50000 chr21 \
+	--datatype rawhic --gt ./test_data/hg19_genome_table.txt -o testname -p 0.05
 ```
 
 The output will be `testname_hubs.csv` in `.bed` style, as :
@@ -129,7 +129,7 @@ The output will be `testname_hubs.csv` in `.bed` style, as :
 This function will use Insulation Score to simply call TAD:
 
 ```shell
-h1d call TAD ./test_data/Treat/observed.KR.chr21.matrix.gz 50000 chr21 \
+h1d call TAD ./test_data/GSE104334_Ctrl.chr21.matrix.gz 50000 chr21 \
 	--datatype matrix -o testname -p 300000
 ```
 

@@ -43,7 +43,39 @@ HiC1Dmetrics is based on python3 and it requires:
 
 All required python packages will be automatically installed when use `pip install h1d`
 
-## 1.4 Input format
+## 1.4 Test file
+
+In this tutorial, we prepared servel files for test. **All results in this tutorial can be reproduced using test data**. We mainly used the data from GSE104334.
+
+- Zipped intra-chromosomal contacts (can be find in the ./test_data/ of GitHub page)
+
+  - GSE104334_Ctrl.chr21.matrix.gz
+  - GSE104334_Rad21KD.chr21.matrix.gz
+
+- Hi-C file in .hic (Juicer) format (the download link is in ./test_data/ of GitHub page)
+
+  - GSE104334_Ctrl.hic
+  - GSE104334_Rad21KD.hic
+
+- Hi-C file in .cool (Cooler) format (the download link is in ./test_data/ of GitHub page)
+
+  - GSE104334_Ctrl.cool
+  - GSE104334_Rad21KD.cool
+
+- Two folder for the test of multisamples as described [here](https://h1d.readthedocs.io/en/latest/multisample.html):
+
+  - multisample1
+  - multisample2
+
+- Other files that support the test:
+
+  - hg19_genome_table.txt
+
+  - hg19_geneDensity50000.txt
+
+    
+
+## 1.5 Input format
 
 HiC1Dmetrics support:
 
@@ -70,7 +102,7 @@ HiC1Dmetrics support:
 
 **Note 2:** Calculation of Interaction Frequency (IF) can only accept raw `.hic` file
 
-## 1.5 Overall usage
+## 1.6 Overall usage
 
 The function of HiC1Dmetrics include serveral sub-command:
 

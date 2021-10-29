@@ -3,8 +3,8 @@
 ## 3.1 Quick start
 
 ``` shell
-h1d two ISC ./test_data/Treat/observed.KR.chr21.matrix.gz \
-	./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d two ISC ./test_data/GSE104334_Rad21KD.chr21.matrix.gz \
+	./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 -o treat_vs_control_ISC
 ```
 
@@ -79,17 +79,17 @@ optional arguments:
 - Use contact matrix:
 
   ``` shell
-  h1d two ISC ./test_data/Treat/observed.KR.chr21.matrix.gz \
-  	./test_data/Control/observed.KR.chr21.matrix.gz 50000 chr21 \
+  h1d two ISC ./test_data/GSE104334_Rad21KD.chr21.matrix.gz \
+  	./test_data/GSE104334_Ctrl.chr21.matrix.gz 50000 chr21 \
   	--datatype matrix -p 300000 -o treat_vs_control_ISC
   ```
 
 - Use raw hic:
 
   ``` shell
-  h1d two ISC ./test_data/Treat/inter_30.hic \
-  	./test_data/Control/inter_30.hic 50000 chr21 \
-  	--datatype rawhic --gt ./reference/genome_table \
+  h1d two ISC ./test_data/GSE104334_Rad21KD.hic \
+  	./test_data/GSE104334_Ctrl.cool 50000 chr21 \
+  	--datatype rawhic --gt ./test_data/hg19_genome_table.txt \
   	-p 300000 -o treat_vs_control_ISC
   ```
 
@@ -135,8 +135,8 @@ Output would be `treat_vs_control_IS_allchr.csv`.
 - Use contact matrix:
 
   ``` shell
-  h1d two CIC ./test_data/Treat/observed.KR.chr21.matrix.gz \
-  	./test_data/Control/observed.KR.chr21.matrix.gz 50000 chr21 \
+  h1d two CIC ./test_data/GSE104334_Rad21KD.chr21.matrix.gz \
+  	./test_data/GSE104334_Ctrl.chr21.matrix.gz 50000 chr21 \
 	  --datatype matrix -p 300000 -o treat_vs_control_ISC \
   	--draw -s 26000000 -e 33000000
   ```
@@ -144,9 +144,9 @@ Output would be `treat_vs_control_IS_allchr.csv`.
 - Use raw `.hic` file
 
   ```shell
-  h1d two CIC ./test_data/Treat/inter_30.hic \
-  	./test_data/Control/inter_30.hic 50000 chr21 \
-  	--datatype rawhic --gt ./reference/genome_table \
+  h1d two CIC ./test_data/GSE104334_Rad21KD.hic \
+  	./test_data/GSE104334_Ctrl.hic 50000 chr21 \
+  	--datatype rawhic --gt ./test_data/hg19_genome_table.txt \
   	-p 300000 -o treat_vs_control_ISC \
   	--draw -s 26000000 -e 33000000
   ```

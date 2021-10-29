@@ -27,7 +27,7 @@ This function provide basic visualization for Hi-C data.
 - `-c`, File of control sample. If provided, it will plot differential matrix of treat_vs_control.
 
 ``` shell
-h1d basic plot ./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d basic plot ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 --datatype matrix -o testplot --plottype square \
 	-s 27500000 -e 32500000
 ```
@@ -41,7 +41,7 @@ If use `--plottype tri`:
 Differential matrix is plotted when the control data is provided:
 
 ```shell
-h1d basic plot ./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d basic plot ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 --datatype matrix -o testplot --plottype square \
 	-s 27500000 -e 32500000
 ```
@@ -53,8 +53,8 @@ h1d basic plot ./test_data/Control/observed.KR.chr21.matrix.gz \
 `--normalize`, Normalize methods {NONE/VC/VC_SQRT/KR}
 
 ```
-h1d basic dump ~/testdata/Control/inter_30.hic 50000 chr21 \
-	--datatype rawhic -o testdump --gt ./h1d/gd/hg19/genome_table
+h1d basic dump ./test_data/GSE104334_Ctrl.hic 50000 chr21 \
+	--datatype rawhic -o testdump --gt ./test_data/hg19_genome_table.txt
 	--normalize KR
 ```
 
@@ -86,8 +86,8 @@ which is dense matrix (zipped) of intra-chromosomal contacts, like:
 - `-n`, Number of processors
 
 ``` shell
-h1d basic dump ./testdata/Control/inter_30.hic 50000 all \
-	--gt ./hg38/genome_table --normalize KR -o justtest \
+h1d basic dump ./test_data/GSE104334_Ctrl.hic 50000 all \
+	--gt ./test_data/hg19_genome_table.txt --normalize KR -o justtest \
 	--datatype rawhic --maxchr 22 -n 30
 ```
 
@@ -124,11 +124,11 @@ justtest
 ## 7.3 Make gene density file for PC1
 
 ```shell
-h1d basic gd refFlat.txt 50000 \
-		./hg38/genome_table -o hg38.geneDensity.txt
+h1d basic gd refFlat.hg19.txt 50000 \
+		./test_data/hg19_genome_table.txt -o hg19.geneDensity.txt
 ```
 
-- `refFlat.txt` is defined by [UCSC](http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&hgta_doSchemaDb=bosTau4&hgta_doSchemaTable=refFlat) and should be at least 6 columns as (without 1st row):
+- `refFlat.hg19.txt` is defined by [UCSC](http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&hgta_doSchemaDb=bosTau4&hgta_doSchemaTable=refFlat) and should be at least 6 columns as (without 1st row):
 
   | **geneName** | name         | chrom | strand | txStart | txEnd  |
   | ------------ | ------------ | ----- | ------ | ------- | ------ |
@@ -138,7 +138,7 @@ h1d basic gd refFlat.txt 50000 \
 
 - `50000` is the resolution for PC1 analysis.
 
-- `./hg38/genome_table` is genome table file (tab-separated)  which described the length of each chromosome for your genome reference:
+- `./test_data/hg19_genome_table.txt` is genome table file (tab-separated)  which described the length of each chromosome for your genome reference:
 
   | chr1 | 248956422 |
   | ---- | --------- |

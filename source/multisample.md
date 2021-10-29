@@ -2,8 +2,9 @@
 
 ## 5.1 Calculation
 
-```
-h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics
+```shell
+h1d multisamples IS ./test_data/multisample1/metadata.txt \
+		50000 chr21 -o multisamples_metrics
 ```
 
 The output would be `multisamples_metrics.csv`:
@@ -32,13 +33,13 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
 
 - `data`, a tsv (Tab-separated) file contain name and paths for all samples (below). Used file could be contact matrix or raw `.hic` as introduced [here](https://h1d.readthedocs.io/en/latest/overview.html#input-format) 
 
-  | Control1 | ./testdata/Control1/observed.KR.chr21.matrix.gz |
-  | -------- | ----------------------------------------------- |
-  | Control1 | ./testdata/Control2/observed.KR.chr21.matrix.gz |
-  | Treat1   | ./testdata/Treat1/observed.KR.chr21.matrix.gz   |
-  | Treat2   | ./testdata/Treat2/observed.KR.chr21.matrix.gz   |
-  | Treat3   | ./testdata/Treat3/observed.KR.chr21.matrix.gz   |
-  | Treat4   | ./testdata/Treat4/observed.KR.chr21.matrix.gz   |
+  | Control1 | ./test_data/multisample1/Control1.chr21.matrix.gz |
+  | -------- | ------------------------------------------------- |
+  | Control1 | ./test_data/multisample1/Control2.chr21.matrix.gz |
+  | Treat1   | ./test_data/multisample1/Treat1.chr21.matrix.gz   |
+  | Treat2   | ./test_data/multisample1/Treat2.chr21.matrix.gz   |
+  | Treat3   | ./test_data/multisample1/Treat3.chr21.matrix.gz   |
+  | Treat4   | ./test_data/multisample1/Treat4.chr21.matrix.gz   |
 
 - `resolution`, resolution (50000, i.e.) of given contact matrix, or choosed resolution for analyzing `.hic` file.
 - `chromosome`, selected chromosome to be analyzed.
@@ -63,7 +64,7 @@ usage: h1d multisamples [-h] [--datatype DATATYPE]
 ### 5.3.1 Correlation map of all samples
 
 ```shell
-h1d multisamples IS test.txt 50000 chr21 \
+h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 \
 	-o multisamples_metrics --corr
 ```
 
@@ -72,7 +73,7 @@ h1d multisamples IS test.txt 50000 chr21 \
 ### 5.3.2 Line chart or multiple samples:
 
 ```shell
-h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
+h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 -o multisamples_metrics \
 	--line -s 24500000 -e 34500000
 ```
 
@@ -81,7 +82,7 @@ h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
 ### 5.3.3 Heatmap or multiple samples:
 
 ```shell
-h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
+h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 -o multisamples_metrics \
 	--heat -s 24500000 -e 34500000
 ```
 
@@ -92,8 +93,8 @@ h1d multisamples IS test.txt 50000 chr21 -o multisamples_metrics \
 Some metrics such as PC1, can not be quantitatively compared, thus we convert it to discrete value to draw a heatmap:
 
 ```shell
-h1d multisamples PC1 test2.txt 50000 chr19 -o multisamples_metrics \
-	--discrete -s 22500000 -e 32500000 -p mm10_geneDensity50000.txt
+h1d multisamples PC1 ./test_data/multisample2/metadata.txt 50000 chr19 -o multisamples2_metrics \
+	--discrete -s 22500000 -e 32500000 -p test_data/multisample2/mm10_geneDensity50000.txt
 ```
 
 <img src="_static/5-3-4.png" alt="RTDimport" style="zoom:50%;" />
@@ -107,7 +108,7 @@ As we mentioned in the manuscript, most of (except PC1 and DI) 1D metrics could 
 To run this, please specify a genomic region and type:
 
 ```shell
-python -m h1d multisamples IS test.txt 50000 chr21 -o ptest --anova -s 24500000 -e 34500000
+python -m h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 -o ptest --anova -s 24500000 -e 34500000
 ```
 
 , where the `test.txt` is described above. The out put will be:

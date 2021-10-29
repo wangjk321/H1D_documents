@@ -3,7 +3,7 @@
 ## 2.1 Quick start
 
 ```shell
-h1d one IS ./test_data/Control/observed.KR.chr21.matrix.gz \
+h1d one IS ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 		50000 chr21 -o Control_IS_chr21
 ```
 
@@ -98,23 +98,23 @@ optional arguments:
 - Use contact matrix:
 
   ```shell
-  h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz \
+  h1d one CI ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
   	50000 chr21 -p 300000 -o control_CI_chr21 --datatype matrix
   ```
 
 - Use raw `.cool` file
 
   ``` shell
-  h1d one CI ./test_data/Control/test.50000.cool \
+  h1d one CI ./test_data/GSE104334_Ctrl.50000.cool \
   	50000 chr21 -p 300000 -o control_CI_chr21 --datatype cool
   ```
   
 - Use raw `.hic` file:
 
   ``` shell
-  h1d one CI ./test_data/Control/inter_30.hic \
+  h1d one CI ./test_data/GSE104334_Ctrl.hic \
   	50000 chr21  -p 300000 -o control_CI_chr21 --datatype rawhic \
-  	--gt ./reference/genome_table
+  	--gt ./test_data/hg19_genome_table.txt
   ```
   
   Output will be `control_CI_chr21.bedGraph` as described before. 
@@ -125,6 +125,15 @@ Calculation of IF only support rawhic datatype
 ​		
 
 ### Multiprocessing for all chromomes:
+
+To deal with multiple chromosomes, you should use [dump function](https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes) in h1d.
+
+To run all chromosomes parallel, do:
+
+```shell
+h1d one IS ./test/Control/ 50000 all 
+	--maxchr 22 --prefix observed.KR. -n 30 -o control
+```
 
 - `chromosome` , set chromosome to "all" will compute metrics for all chromosomes.
 
@@ -147,13 +156,6 @@ Calculation of IF only support rawhic datatype
 
 - `-n`, Number of processors
 
-To run all chromosomes parallel, do:
-
-```shell
-h1d one IS ./test/Control/ 50000 all 
-	--maxchr 22 --prefix observed.KR. -n 30 -o control
-```
-
 Output would be `control_IS_allchr.csv`.
 
 
@@ -163,7 +165,7 @@ Output would be `control_IS_allchr.csv`.
 - Use contact matrix:
 
   ``` shell
-  h1d one CI ./test_data/Control/observed.KR.chr21.matrix.gz \
+  h1d one CI ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
   	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype matrix \
     --draw -s 26000000 -e 33000000
   ```
@@ -171,7 +173,7 @@ Output would be `control_IS_allchr.csv`.
 - Use raw matrix:
 
   ```shell
-  h1d one CI ./test_data/Control/inter_30.hic \
+  h1d one CI ./test_data/GSE104334_Ctrl.hic \
   	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype rawhic \
   	--gt ./reference/genome_table --draw -s 26000000 -e 33000000
   ```

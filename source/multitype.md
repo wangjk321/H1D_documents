@@ -4,7 +4,7 @@
 
 ``` shell
 h1d multitypes IS,CI,DI \
-	./test_data/Control/observed.KR.chr21.matrix.gz \
+	./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 -p 300000,300000,1000000 
 	--datatype matrix -o multi_types_metric
 ```
@@ -56,9 +56,9 @@ usage: h1d multitypes [-h] -p PARAMETER [-c CONTROLMATRIX]
 
 ``` shell
 h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF \
-	./test_data/Control/inter_30.hic 50000 chr21 
-	-p 300000,300000,1000000,300000,3000000,./test_data/gd50000.txt,300000,300000,0.05 
-	--datatype rawhic --gt ./hg19/genome_table 
+	./test_data/GSE104334_Ctrl.hic 50000 chr21 
+	-p 300000,300000,1000000,300000,3000000,./test_data/hg19_geneDensity50000.txt,300000,300000,0.05 
+	--datatype rawhic --gt ./test_data/hg19_genome_table.txt 
 	-o all_onesample -d -s 24500000 -e 34500000
 ```
 
@@ -68,10 +68,10 @@ h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF \
 
 ``` shell
 h1d multitypes ISC,CIC,SSC,deltaDLR,CD,IASC,IESC,IFC,DRF \
-	./test_data/Treat/inter_30.hic 50000 chr21 \
-	-c ./test_data/Control/inter_30.hic
+	./test_data/GSE104334_Rad21KD.hic 50000 chr21 \
+	-c ./test_data/GSE104334_Ctrl.hic
 	-p 300000,300000,300000,3000000,pearson,300000,300000,0.05,200000-5000000 \ 
-	--datatype rawhic --gt .hg19/genome_table \
+	--datatype rawhic --gt ../test_data/hg19_genome_table.txt \
 	-o all_twosample -d -s 24500000 -e 34500000
 ```
 
