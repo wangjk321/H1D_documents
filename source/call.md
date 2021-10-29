@@ -3,8 +3,17 @@
 ## 4.1 Quick start
 
 ```shell
+# dense matrix
 h1d call stripe ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 	50000 chr21 -o testname
+
+# .hic
+h1d call stripe ./test_data/GSE104334_Ctrl.hic \
+	50000 chr21 -o testname --datatype rawhic --gt ./test_data/hg19_genome_table.txt
+	
+# .cool
+h1d call stripe ./test_data/GSE104334_Ctrl.50000.cool \
+	50000 chr21 -o testname --datatype cool --gt ./test_data/hg19_genome_table.txt
 ```
 
 The output will be: `testname_stripe.csv`

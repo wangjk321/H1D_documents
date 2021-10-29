@@ -102,18 +102,19 @@ optional arguments:
   	50000 chr21 -p 300000 -o control_CI_chr21 --datatype matrix
   ```
 
-- Use raw `.cool` file
-
-  ``` shell
-  h1d one CI ./test_data/GSE104334_Ctrl.50000.cool \
-  	50000 chr21 -p 300000 -o control_CI_chr21 --datatype cool
-  ```
-  
 - Use raw `.hic` file:
 
   ``` shell
   h1d one CI ./test_data/GSE104334_Ctrl.hic \
   	50000 chr21  -p 300000 -o control_CI_chr21 --datatype rawhic \
+  	--gt ./test_data/hg19_genome_table.txt	
+  ```
+  
+- Use raw `.cool` file
+
+  ``` shell
+  h1d one CI ./test_data/GSE104334_Ctrl.50000.cool \
+  	50000 chr21 -p 300000 -o control_CI_chr21 --datatype cool
   	--gt ./test_data/hg19_genome_table.txt
   ```
   
@@ -170,12 +171,20 @@ Output would be `control_IS_allchr.csv`.
     --draw -s 26000000 -e 33000000
   ```
 
-- Use raw matrix:
+- Use raw hic:
 
   ```shell
   h1d one CI ./test_data/GSE104334_Ctrl.hic \
   	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype rawhic \
-  	--gt ./reference/genome_table --draw -s 26000000 -e 33000000
+  	--gt ./test_data/genome_table --draw -s 26000000 -e 33000000
+  ```
+
+- Use cool file:
+
+  ``` shell
+  h1d one CI ./test_data/GSE104334_Ctrl.50000.cool \
+  	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype cool \
+  	--gt ./test_data/genome_table --draw -s 26000000 -e 33000000
   ```
 
 The output will be `control_CI_chr21.bedGraph` and `control_CI_chr21.pdf`:

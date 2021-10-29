@@ -3,10 +3,23 @@
 ## 6.1 Calculation
 
 ``` shell
+# dense matrix
 h1d multitypes IS,CI,DI \
 	./test_data/GSE104334_Ctrl.chr21.matrix.gz \
-	50000 chr21 -p 300000,300000,1000000 
+	50000 chr21 -p 300000,300000,1000000 \
 	--datatype matrix -o multi_types_metric
+	
+# .hic input
+h1d multitypes IS,CI,DI \
+	./test_data/GSE104334_Ctrl.hic  \
+	50000 chr21 -p 300000,300000,1000000 \
+	--datatype rawhic -o multi_types_metric --gt ./test_data/hg19_genome_table.txt 
+
+# .cool input
+h1d multitypes IS,CI,DI \
+	./test_data/GSE104334_Ctrl.50000.cool  \
+	50000 chr21 -p 300000,300000,1000000 \
+	--datatype cool -o multi_types_metric --gt ./test_data/hg19_genome_table.txt 
 ```
 
 This will output a csv file `multi_types_metric.csv` like：
@@ -49,8 +62,6 @@ usage: h1d multitypes [-h] -p PARAMETER [-c CONTROLMATRIX]
 `-s`, start site for plot.
 
 `-e`, end site for plot.
-
-
 
 - Visulize one-sample metrics (output will be `all_onesample.csv` and `all_onesample.pdf`)
 

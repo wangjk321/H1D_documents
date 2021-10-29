@@ -88,12 +88,21 @@ optional arguments:
 
   ``` shell
   h1d two ISC ./test_data/GSE104334_Rad21KD.hic \
-  	./test_data/GSE104334_Ctrl.cool 50000 chr21 \
+  	./test_data/GSE104334_Ctrl.hic 50000 chr21 \
   	--datatype rawhic --gt ./test_data/hg19_genome_table.txt \
   	-p 300000 -o treat_vs_control_ISC
   ```
 
+- Use cool file
 
+  ``` shell
+  h1d two ISC ./test_data/GSE104334_Rad21KD.50000.cool \
+  	./test_data/GSE104334_Ctrl.50000.cool 50000 chr21 \
+  	--datatype cool --gt ./test_data/hg19_genome_table.txt \
+  	-p 300000 -o treat_vs_control_ISC
+  ```
+
+  
 
 
 ### 3.3.1 Multiprocessing for all chromomes:
@@ -151,9 +160,16 @@ Output would be `treat_vs_control_IS_allchr.csv`.
   	--draw -s 26000000 -e 33000000
   ```
 
-  
 
+- Use `.cool` file
 
+  ``` shell
+  h1d two CIC ./test_data/GSE104334_Rad21KD.50000.cool \
+  	./test_data/GSE104334_Ctrl.50000.cool 50000 chr21 \
+  	--datatype cool --gt ./test_data/hg19_genome_table.txt \
+  	-p 300000 -o treat_vs_control_ISC \
+  	--draw -s 26000000 -e 33000000
+  ```
 
 <img src="_static/3-4.png" alt="RTDimport" style="zoom:60%;" />
 
