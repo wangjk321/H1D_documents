@@ -8,7 +8,7 @@ h1d two ISC ./test_data/GSE104334_Rad21KD.chr21.matrix.gz \
 	50000 chr21 -o treat_vs_control_ISC
 ```
 
-This command would generate a bedGraph file (`treat_vs_control_ISC.bedGraph`) for ISC:
+This command would generate a bedGraph file (`treat_vs_control_ISC.bedGraph`) for ISC.  An example result can be checked from [here](https://www.dropbox.com/s/l7n8bkqnmsmtdt6/treat_vs_control_ISC.bedGraph)
 
 ## 3.2 Usage
 

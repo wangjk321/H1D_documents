@@ -123,3 +123,7 @@ positional arguments:
 
 In the next section, we mainly use a high-resolution Hi-C data by Rao et,al. ([GSE104334](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104334)) to make this tutorial
 
+## 1.7 Memory requirement
+
+HiC1Dmetrics uses acceptable memory (serveral gigabytes) on high-resolution (i.e. >=5kb) Hi-C, but we recommend using dense matrix as input when dealing with Hi-C data at fine resolution (e.g. <1kb). For example, we tested a 1kb resolution Hi-C data (GSE63525, chromosome 21), '.hic' input uses ~69 Gb memory, while 'dense matrix' input uses ~10 Gb memory. Thus, the fine resolution Hi-C data using '.hic'/'.cool' input may require ~100 Gb memory. 
+

@@ -7,7 +7,7 @@ h1d one IS ./test_data/GSE104334_Ctrl.chr21.matrix.gz \
 		50000 chr21 -o Control_IS_chr21
 ```
 
-This command would generate a bedGraph file (`Control_IS_chr21.bedGraph`) for Insulation Score:
+This command would generate a bedGraph file (`Control_IS_chr21.bedGraph`) for Insulation Score. An example file can be download fron [here](https://www.dropbox.com/s/9xq96tuelw2pvm8/control_CI_chr21.bedGraph?dl=0)
 
 | ...   | ...      | ...      |          |
 | ----- | -------- | -------- | -------- |
