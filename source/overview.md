@@ -18,7 +18,7 @@ After installation, try:
 
 ```
 $ h1d -V
-h1d version 0.0.21
+h1d version 0.1.20
 ```
 
 
@@ -67,7 +67,7 @@ In this tutorial, we prepared servel files for test. **All results in this tutor
   - multisample1
   - multisample2
 
-- Other files that support the test:
+- Other files that support the test (can be find in the ./test_data/ of GitHub page):
 
   - hg19_genome_table.txt
 
