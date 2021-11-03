@@ -67,7 +67,7 @@ usage: h1d multitypes [-h] -p PARAMETER [-c CONTROLMATRIX]
 
 ``` shell
 h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF \
-	./test_data/GSE104334_Ctrl.hic 50000 chr21 
+	./test_data/GSE104334_Ctrl.hic 50000 chr21 \
 	-p 300000,300000,1000000,300000,3000000,./test_data/hg19_geneDensity50000.txt,300000,300000,0.05 
 	--datatype rawhic --gt ./test_data/hg19_genome_table.txt 
 	-o all_onesample -d -s 24500000 -e 34500000
@@ -80,9 +80,9 @@ h1d multitypes IS,CI,DI,SS,DLR,PC1,IAS,IES,IF \
 ``` shell
 h1d multitypes ISC,CIC,SSC,deltaDLR,CD,IASC,IESC,IFC,DRF \
 	./test_data/GSE104334_Rad21KD.hic 50000 chr21 \
-	-c ./test_data/GSE104334_Ctrl.hic
+	-c ./test_data/GSE104334_Ctrl.hic \
 	-p 300000,300000,300000,3000000,pearson,300000,300000,0.05,200000-5000000 \ 
-	--datatype rawhic --gt ../test_data/hg19_genome_table.txt \
+	--datatype rawhic --gt ./test_data/hg19_genome_table.txt \
 	-o all_twosample -d -s 24500000 -e 34500000
 ```
 

@@ -108,7 +108,7 @@ As we mentioned in the manuscript, most of (except PC1 and DI) 1D metrics could 
 To run this, please specify a genomic region and type:
 
 ```shell
-python -m h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 -o ptest --anova -s 24500000 -e 34500000
+h1d multisamples IS ./test_data/multisample1/metadata.txt 50000 chr21 -o ptest --anova -s 24500000 -e 34500000
 ```
 
 , where the `test.txt` is described above. The out put will be:

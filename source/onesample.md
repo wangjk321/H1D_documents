@@ -127,7 +127,7 @@ Calculation of IF only support rawhic datatype
 
 ### Multiprocessing for all chromomes:
 
-To deal with multiple chromosomes, you should use [dump function](https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes) in h1d.
+To deal with multiple chromosomes, you should first use [dump function](https://h1d.readthedocs.io/en/latest/basic.html#dump-all-chromosomes) in h1d.
 
 To run all chromosomes parallel, do:
 
@@ -176,7 +176,7 @@ Output would be `control_IS_allchr.csv`.
   ```shell
   h1d one CI ./test_data/GSE104334_Ctrl.hic \
   	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype rawhic \
-  	--gt ./test_data/genome_table --draw -s 26000000 -e 33000000
+  	--gt ./test_data/hg19_genome_table.txt --draw -s 26000000 -e 33000000
   ```
 
 - Use cool file:
@@ -184,7 +184,7 @@ Output would be `control_IS_allchr.csv`.
   ``` shell
   h1d one CI ./test_data/GSE104334_Ctrl.50000.cool \
   	50000 chr21 -p 300000 -o Control_CI_chr21 --datatype cool \
-  	--gt ./test_data/genome_table --draw -s 26000000 -e 33000000
+  	--gt ./test_data/hg19_genome_table.txt --draw -s 26000000 -e 33000000
   ```
 
 The output will be `control_CI_chr21.bedGraph` and `control_CI_chr21.pdf`:
