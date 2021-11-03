@@ -126,5 +126,6 @@ In the next section, we mainly use a high-resolution Hi-C data by Rao et,al. ([G
 ## 1.7 Memory requirement
 
 - HiC1Dmetrics uses acceptable memory (serveral gigabytes) on high-resolution (i.e. >=5kb) Hi-C。
-- Current HiC1Dmetrics does not assume the Hi-C data with super-high resolution (e.g. <1kb). The application on fine resolution Hi-C will use much more memory. i.e., for 1kb resolution Hi-C data (GSE63525, chromosome 21), '.hic' input uses ~69 Gb memory, while 'dense matrix' input uses ~10 Gb memory; For mouse chromosome 1, 1kb-data uses >200 Gb memory。
+- Current HiC1Dmetrics does not assume the Hi-C data with super-high resolution (e.g. <1kb). The application on fine resolution Hi-C will use much more memory. i.e., for 1kb resolution Hi-C data (GSE63525, chromosome 21), '.hic' input uses ~69 Gb memory, while 'dense matrix' input uses ~10 Gb memory; For mouse chromosome 1, 1kb-data uses >200 Gb memory.
+- One reason is that we extract matrix from .hic file using Juicertools (the first step), which requires hundreds of gigabytes of memory in 1kb resolution. The other reason is that h1d still need to load and deal with (the second step) the huge 2D matrix (e.g., the file size of 1kb dense matrix of chromosome 1 is ~ 233 Gb). 
 -  We recommend using the dense matrix as the input instead of .hic/ .cool file to reduce the memory usage. 
