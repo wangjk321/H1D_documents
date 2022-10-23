@@ -128,7 +128,7 @@ h1d basic gd refFlat.hg19.txt 50000 \
 		./test_data/hg19_genome_table.txt -o hg19.geneDensity.txt
 ```
 
-- `refFlat.hg19.txt` is defined by [UCSC](http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&hgta_doSchemaDb=bosTau4&hgta_doSchemaTable=refFlat) and should be at least 6 columns as (without 1st row):
+- `refFlat.hg19.txt` is defined by [UCSC](http://www.nodai-genome.org/btau/cgi-bin/hgTables?hgsid=5165&hgta_doSchemaDb=bosTau4&hgta_doSchemaTable=refFlat) and should be at least 6 columns as (The first column geneName must not be NA):
 
   | **geneName** | name         | chrom | strand | txStart | txEnd  |
   | ------------ | ------------ | ----- | ------ | ------- | ------ |
